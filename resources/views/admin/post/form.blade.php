@@ -22,17 +22,34 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    @if(!@isset($category))   
-                    {!! Form::open(['route' => 'category.store', 'method' => 'POST']) !!}
+                    @if(!@isset($post))   
+                    {!! Form::open(['route' => 'post.store', 'method' => 'POST']) !!}
                     @else
-                    {!! Form::open(['route' => ['category.update', $category->id], 'method' => 'PUT']) !!}
+                    {!! Form::open(['route' => ['post.update', $post->id], 'method' => 'PUT']) !!}
                     @endif
                         
                     <div class="form-group">
-                        {!! Form::label('name', 'Name', []) !!}
-                        {!! Form::text('name', isset($category) ? $category->name : '', ['class' => 'form-control', 'placeholder' => 'Nhập dữ liệu...']) !!}
+                        {!! Form::label('title', 'Title', []) !!}
+                        {!! Form::text('title', isset($post) ? $post->title : '', ['class' => 'form-control', 'placeholder' => 'Nhập dữ liệu...']) !!}
                     </div>
-                    @if(!isset($category))
+                    <div class="form-group">
+                        {!! Form::label('Category', 'Category', []) !!}
+                        {!! Form::select('category_id', $category, isset($post) ? $post->category_id : '', ['class' => 'form-control']) !!}
+
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('content', 'Content', []) !!}
+                        {!! Form::textarea('content', isset($post) ? $post->content : '', [
+                            'style' => 'resize:none',
+                            'class' => 'form-control',
+                            'placeholder' => 'Nhập dữ liệu...',
+                        ]) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('author', 'Author', []) !!}
+                        {!! Form::text('author', isset($post) ? $post->author : '', ['class' => 'form-control', 'placeholder' => 'Nhập dữ liệu...']) !!}
+                    </div>
+                    @if(!isset($post))
                     {!! Form::submit('Thêm', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
                     @else
                     {!! Form::submit('Cập Nhật', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}

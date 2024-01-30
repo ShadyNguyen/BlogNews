@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -15,7 +16,8 @@ class PostController extends Controller
     public function index()
     {
         $list = Post::orderBy('id', 'DESC')->get();
-        return view('admin.post.index',compact('list'));
+        $category = Category::pluck('name','id');
+        return view('admin.post.index',compact('list','category'));
     }
 
     /**
@@ -25,7 +27,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $list = Post::all();
+        $category = Category::pluck('name','id');
+
+        return view('admin.post.form',compact('list','category'));
     }
 
     /**
@@ -36,7 +41,31 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate(
+            [
+                'title' =>'required|unique:posts|max:255',
+                'content' =>'required',
+                'author' => 'required',
+                'category_id' => 'required',
+            ],
+            [
+                'title.unique' =>'Tên danh mục đã có ,xin điền tên khác',
+                'title.required' =>'Vui lòng điền tên bài viết!',
+                'content.required' =>'Vui lòng điền nội dung!',
+                'author.required' =>'Vui lòng điền tên tác giả!',
+                'category_id.required' =>'Vui lòng điền tên danh mục!',
+
+            ]
+        );
+
+        $post = new Post();
+        $post->title =$data['title'];
+        $post->category_id =$data['category_id'];
+        $post->content =$data['content'];
+        $post->author =$data['author'];
+        $post->save();
+        toastr()->success('Thành công','Thêm danh mục thành công.');
+        return redirect()->route('post.index');
     }
 
     /**
@@ -58,7 +87,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        $category = Category::pluck('name','id');
+        $list = Post::all();
+        return view('admin.post.form',compact('list','post','category'));
     }
 
     /**
@@ -70,7 +102,29 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate(
+            [
+                'title' =>'required|max:255',
+                'content' =>'required',
+                'author' => 'required',
+                'category_id' => 'required',
+            ],
+            [
+                'title.required' =>'Vui lòng điền tên bài viết!',
+                'content.required' =>'Vui lòng điền nội dung!',
+                'author.required' =>'Vui lòng điền tên tác giả!',
+                'category_id.required' =>'Vui lòng điền tên danh mục!',
+
+            ]
+        );
+        $post =  Post::find($id);
+        $post->title =$data['title'];
+        $post->category_id =$data['category_id'];
+        $post->content =$data['content'];
+        $post->author =$data['author'];
+        $post->save();
+        toastr()->success('Thành công','Sửa bài viết thành công.');
+        return redirect()->route('post.index');
     }
 
     /**
@@ -81,6 +135,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::find($id)->delete();
+        toastr()->info('Thành công', 'Xoá bài vi thành công.');
+        return redirect()->route('post.index');
     }
 }

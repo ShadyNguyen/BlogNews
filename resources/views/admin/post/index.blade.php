@@ -17,7 +17,7 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="{{ route('category.create') }}" class="btn btn-primary d-none d-sm-inline-block">
+                        <a href="{{ route('post.create') }}" class="btn btn-primary d-none d-sm-inline-block">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -26,7 +26,7 @@
                                 <path d="M12 5l0 14" />
                                 <path d="M5 12l14 0" />
                             </svg>
-                            Thêm Danh Mục
+                            Thêm Bài Viết
                         </a>
                         <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                             data-bs-target="#modal-report" aria-label="Create new report">
@@ -55,7 +55,10 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>Category</th>
+                                        <th>Content</th>
+                                        <th>Author</th>
                                         <th class="w-1">Manage</th>
                                     </tr>
                                 </thead>
@@ -63,11 +66,14 @@
                                     @foreach ($list as $key => $cate)
                                         <tr>
                                             <th scope="row">{{ $key }}</th>
-                                            <td>{{ $cate->name }}</td>
+                                            <td>{{ $cate->title }}</td>
+                                            <td>{{$cate->category->name}}</td>
+                                            <td>{{$cate->content}}</td>
+                                            <td>{{$cate->author}}</td>
                                             <td>
                                                 {!! Form::open([
                                                     'method' => 'DELETE',
-                                                    'route' => ['category.destroy', $cate->id],
+                                                    'route' => ['post.destroy', $cate->id],
                                                     'onsubmit' => 'return confirm("Bạn có chắc muốn xoá không?")',
                                                 ]) !!}
             
@@ -75,12 +81,10 @@
             
                                                 {!! Form::close() !!}
             
-                                                <a href="{{route ('category.edit',$cate->id) }}" class="btn btn-info">Sửa</a>
+                                                <a href="{{route ('post.edit',$cate->id) }}" class="btn btn-info">Sửa</a>
                                             </td>
                                         </tr>
                                     @endforeach
-
-
                                 </tbody>
                                 </tableclass="table>
                         </div>
