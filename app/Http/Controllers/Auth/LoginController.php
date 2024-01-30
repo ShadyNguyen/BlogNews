@@ -24,4 +24,9 @@ class LoginController extends Controller
         // Đăng nhập thất bại
         return redirect()->back()->withInput()->withErrors(['email' => 'Đăng nhập không thành công']);
     }
+    
+    public function logout() {
+        Auth::logout();
+        return view('auth.sign-in');
+    }
 }

@@ -23,11 +23,13 @@ use App\Http\Controllers\PostController;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::middleware('guest')->group(function () {
-    Route::get('/login',[LoginController::class,'showLoginForm'])->name('showLoginForm');
-    Route::post('/login',[LoginController::class,'login'])->name('login');
-// });
+//auth
+Route::get('/login',[LoginController::class,'showLoginForm'])->name('showLoginForm');
+Route::post('/login',[LoginController::class,'login'])->name('login');
+Route::get('/register',[RegisterController::class,'showRegisterForm'])->name('showRegisterForm');
+Route::post('/register',[RegisterController::class,'create'])->name('register');
+Route::get('logout',[LoginController::class,'logout'])->name('logout');
 
-Route::group(['middleware' => ['auth', 'can:admin-staff']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/home',[HomeController::class,'index'])->name('home');
 });

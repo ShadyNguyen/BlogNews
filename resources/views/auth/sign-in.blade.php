@@ -10,7 +10,7 @@
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">{{ __('Email')}}</label>
-                        <input type="email" class="form-control" placeholder="your@email.com" autocomplete="off">
+                        <input type="email" class="form-control" placeholder="Email.." autocomplete="off" name="email" value="{{old('email')}}">
                     </div>
                     <div class="mb-2">
                         <label class="form-label">
@@ -20,7 +20,7 @@
                             </span>
                         </label>
                         <div class="input-group input-group-flat">
-                            <input type="password" class="form-control" placeholder="Your password" autocomplete="off">
+                            <input type="password" class="form-control" placeholder="Mật Khẩu..." autocomplete="off" name="password" value="{{old('password')}}">
                             <span class="input-group-text">
                                 <a href="#" class="link-secondary" title="Show password"
                                     data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
@@ -76,7 +76,7 @@
             </div>
         </div>
         <div class="text-center text-muted mt-3">
-            {{ __('Bạn chưa có Tài Khoản')}} <a href="./sign-up.html" tabindex="-1">{{ __('Đăng Ký')}}</a>
+            {{ __('Bạn chưa có Tài Khoản')}} <a href="{{route("showRegisterForm")}}" tabindex="-1">{{ __('Đăng Ký')}}</a>
         </div>
     </div>
 @endsection
