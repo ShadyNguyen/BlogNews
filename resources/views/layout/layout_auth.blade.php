@@ -17,7 +17,7 @@
     <title>Sign in - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
     <!-- CSS files -->
     <link href="{{asset ('backend/css/tabler.min.css')}} " rel="stylesheet"/>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link href="{{asset('backend/css/tabler-flags.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('backend/css/tabler-payments.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('backend/css/tabler-vendors.min.css')}}" rel="stylesheet"/>
