@@ -12,13 +12,15 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
     <!-- CSS files -->
-    <link href="./dist/css/tabler.min.css?1684106062" rel="stylesheet"/>
-    <link href="./dist/css/tabler-flags.min.css?1684106062" rel="stylesheet"/>
-    <link href="./dist/css/tabler-payments.min.css?1684106062" rel="stylesheet"/>
-    <link href="./dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet"/>
-    <link href="./dist/css/demo.min.css?1684106062" rel="stylesheet"/>
+    <link href="{{asset('backend/css/tabler.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('backend/css/tabler-flags.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('backend/css/tabler-payments.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('backend/css/tabler-vendors.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('backend/css/demo.min.css')}}" rel="stylesheet"/>
     <style>
       @import url('https://rsms.me/inter/inter.css');
       :root {
@@ -30,7 +32,7 @@
     </style>
   </head>
   <body >
-    <script src="./dist/js/demo-theme.min.js?1684106062"></script>
+    <script src="{{asset('backend/js/demo-theme.min.js')}}"></script>
     <div class="page">
       <!-- Navbar -->
       <header class="navbar navbar-expand-md d-print-none" >
@@ -175,6 +177,7 @@
         </div>
       </header>
       <header class="navbar-expand-md">
+        
         <div class="collapse navbar-collapse" id="navbar-menu">
           <div class="navbar">
             <div class="container-xl">
@@ -2102,13 +2105,13 @@
       </div>
     </div>
     <!-- Libs JS -->
-    <script src="./dist/libs/apexcharts/dist/apexcharts.min.js?1684106062" defer></script>
-    <script src="./dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1684106062" defer></script>
-    <script src="./dist/libs/jsvectormap/dist/maps/world.js?1684106062" defer></script>
-    <script src="./dist/libs/jsvectormap/dist/maps/world-merc.js?1684106062" defer></script>
+    <script src="{{asset('backend/libs/apexcharts/dist/apexcharts.min.js')}}" defer></script>
+    <script src="{{asset('backend/libs/jsvectormap/dist/js/jsvectormap.min.js')}}" defer></script>
+    <script src="{{asset('backend/libs/jsvectormap/dist/maps/world.js')}}" defer></script>
+    <script src="{{asset('backend/libs/jsvectormap/dist/maps/world-merc.js')}}" defer></script>
     <!-- Tabler Core -->
-    <script src="./dist/js/tabler.min.js?1684106062" defer></script>
-    <script src="./dist/js/demo.min.js?1684106062" defer></script>
+    <script src="{{asset('backend/js/tabler.min.js')}}" defer></script>
+    <script src="{{asset('backend/js/demo.min.js')}}" defer></script>
     <script>
       // @formatter:off
       document.addEventListener("DOMContentLoaded", function () {
