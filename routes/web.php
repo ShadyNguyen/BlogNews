@@ -37,6 +37,9 @@ Route::post('/register',[RegisterController::class,'create'])->name('register');
 Route::get('logout',[LoginController::class,'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::post('update-profile/{id}',[UserController::class,'updateProfile'])->name('update-profile');
+    Route::post('update-password/{id}',[UserController::class,'updatePassword'])->name('update-password');
+
     Route::resource('/user',UserController::class);
     Route::get('/profile',[UserController::class,'profileUser'])->name('profile');
     Route::get('/profile/password',[UserController::class,'pwdUser'])->name('profile.pwd');

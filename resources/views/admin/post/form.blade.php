@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><h2>Quản lý Danh Mục</h2></div>
+                <div class="card-header"><h2>Quản lý Bài Viết</h2></div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -47,9 +47,9 @@
                     </div>
                     <div class="form-group">
                         {!! Form::label('Image', 'Image') !!}
-                        {!! Form::file('image', ['class' => 'form-control-file mt-3']) !!}
+                        {!! Form::file('image', ['class' => 'form-control mt-3']) !!}
                         @if (!empty($post))
-                            <img width="100%" src="{{ asset('uploads/artical/' . $post->image) }}">
+                            <img width="50%" src="{{ asset('uploads/article/' . $post->image) }}">
                         @endif
                     </div>
                     <div class="form-group">

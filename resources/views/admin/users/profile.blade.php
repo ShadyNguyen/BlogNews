@@ -36,7 +36,8 @@
                         </div>
                         <div class="col d-flex flex-column">
                             <div class="card-body">
-                                <form action="" method="POST" enctype="multipart/form-data">
+                                {{-- <form action="{{route('update-profile',Auth::user()->id)}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                     <h2 class="mb-4">My Account</h2>
                                     <h3 class="card-title">Profile Details</h3>
                                     <div class="row align-items-center">
@@ -44,7 +45,7 @@
                                             <img src="{{asset('uploads/avt'.Auth::user()->avatar)}}" alt="" class="avatar avatar-2xl">
                                         </div>
                                         <div class="col-auto">
-                                            <input type="file" class="form-control" name="avatar">
+                                            
                                         </div>
                                     </div>
                                     <h3 class="card-title mt-4">Profile</h3>
@@ -70,13 +71,35 @@
                                         <a href="#" class="btn">
                                             Cancel
                                         </a>
-                                        <a href="#" class="btn btn-primary">
-                                            Submit
-                                        </a>
+                                        <button type="submit" class="btn btn-ghost-primary" name="update">Submit</button>
                                     </div>
-
-
-                                </form>
+                                </form> --}}
+                                @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+                           
+                            {!! Form::open(['route' => ['update-profile', Auth::user()->id], 'method' => 'POST','enctype' => 'multipart/form-data']) !!}
+                           
+                            <h1>Quản Lý Tài Khoản</h1>
+                             <p> Account Setting</p>   
+                            <div class="form-group">
+                                <img src="{{asset('uploads/avt/'.Auth::user()->avatar)}}" alt="" class="avatar avatar-2xl">
+                                {!! Form::file('avatar', ['class' => 'form-control mt-4']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('name', 'Name', ['style' => 'margin-top:10px']) !!}
+                                {!! Form::text('name', Auth::user()->name , ['class' => 'form-control mt-auto', 'placeholder' => 'Nhập dữ liệu...']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('email', 'Email', ['style' => 'margin-top:10px']) !!}
+                                {!! Form::text('email',  Auth::user()->email , ['class' => 'form-control mt-auto', 'placeholder' => 'Nhập dữ liệu...', 'readonly']) !!}
+                            </div>
+                            
+                            {!! Form::submit('Cập Nhật', ['class' => 'btn btn-primary', 'style' => 'margin-top:10px; float:right']) !!}
+                            
+                            {!! Form::close() !!}
                             </div>
                         </div>
                     </div>
