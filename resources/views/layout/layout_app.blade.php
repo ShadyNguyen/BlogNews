@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+    <title>Admin Center.</title>
     <!-- CSS files -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link href="{{ asset('backend/css/tabler.min.css') }}" rel="stylesheet" />
@@ -104,7 +104,7 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <a href="./profile.html" class="dropdown-item">Profile</a>
+                            <a href="{{route('profile')}}" class="dropdown-item">Profile</a>
                             <a href="./settings.html" class="dropdown-item">Settings</a>
                             <a href="{{ route('logout') }}" class="dropdown-item">Logout</a>
                         </div>

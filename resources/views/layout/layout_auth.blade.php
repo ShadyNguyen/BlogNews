@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Sign in - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+    <title>Login</title>
     <!-- CSS files -->
     <link href="{{asset ('backend/css/tabler.min.css')}} " rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />

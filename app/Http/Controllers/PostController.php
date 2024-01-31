@@ -47,6 +47,8 @@ class PostController extends Controller
                 'content' =>'required',
                 'author' => 'required',
                 'category_id' => 'required',
+                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+
             ],
             [
                 'title.unique' =>'Tên danh mục đã có ,xin điền tên khác',
@@ -63,6 +65,14 @@ class PostController extends Controller
         $post->category_id =$data['category_id'];
         $post->content =$data['content'];
         $post->author =$data['author'];
+        $get_image = $request->file('image');
+        if ($get_image) {
+            $get_name_image = $get_image->getClientOriginalName(); // hinhanh1.jpg
+            $name_image = current(explode('.', $get_name_image)); //[0]=> hinhanh1.jpg . [1]=> jpg
+            $new_image = $name_image . rand(0, 9999) . '.' . $get_image->getClientOriginalExtension();
+            $get_image->move('uploads/article/', $new_image);
+            $post->image = $new_image;
+        }
         $post->save();
         toastr()->success('Thành công','Thêm danh mục thành công.');
         return redirect()->route('post.index');
@@ -122,6 +132,14 @@ class PostController extends Controller
         $post->category_id =$data['category_id'];
         $post->content =$data['content'];
         $post->author =$data['author'];
+        $get_image = $request->file('image');
+        if ($get_image) {
+            $get_name_image = $get_image->getClientOriginalName(); // hinhanh1.jpg
+            $name_image = current(explode('.', $get_name_image)); //[0]=> hinhanh1.jpg . [1]=> jpg
+            $new_image = $name_image . rand(0, 9999) . '.' . $get_image->getClientOriginalExtension();
+            $get_image->move('uploads/article/', $new_image);
+            $post->image = $new_image;
+        }
         $post->save();
         toastr()->success('Thành công','Sửa bài viết thành công.');
         return redirect()->route('post.index');

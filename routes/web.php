@@ -25,7 +25,7 @@ use App\Http\Controllers\DashboardController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//user
 Route::get('/', function () {
     return view('welcome');
 });
@@ -37,12 +37,16 @@ Route::post('/register',[RegisterController::class,'create'])->name('register');
 Route::get('logout',[LoginController::class,'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::resource('/user',UserController::class);
+    Route::get('/profile',[UserController::class,'profileUser'])->name('profile');
+    Route::get('/profile/password',[UserController::class,'pwdUser'])->name('profile.pwd');
     Route::get('/home',[HomeController::class,'index'])->name('home');
     Route::resource('category', CategoryController::class);
     Route::resource('post',PostController::class);
 });
 
 Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function (){
+
     Route::get('/', [DashboardController::class, 'render'])->name('index');
     Route::resource('/roles', RoleController::class);
     Route::post('/roles/{role}/permissions',[RoleController::class, 'givePermission'])->name('roles.permissions');

@@ -56,6 +56,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Title</th>
+                                        <th>Image</th>
                                         <th>Category</th>
                                         <th>Content</th>
                                         <th>Author</th>
@@ -67,6 +68,9 @@
                                         <tr>
                                             <th scope="row">{{ $key }}</th>
                                             <td>{{ $cate->title }}</td>
+                                            <td>
+                                                <img width="100" src="{{ asset('uploads/article/' . $cate->image) }}">
+                                            </td>
                                             <td>{{$cate->category->name}}</td>
                                             <td>{{$cate->content}}</td>
                                             <td>{{$cate->author}}</td>

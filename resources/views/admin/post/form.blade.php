@@ -23,31 +23,38 @@
                         </div>
                     @endif
                     @if(!@isset($post))   
-                    {!! Form::open(['route' => 'post.store', 'method' => 'POST']) !!}
+                    {!! Form::open(['route' => 'post.store', 'method' => 'POST' ,'enctype' => 'multipart/form-data']) !!}
                     @else
-                    {!! Form::open(['route' => ['post.update', $post->id], 'method' => 'PUT']) !!}
+                    {!! Form::open(['route' => ['post.update', $post->id], 'method' => 'PUT','enctype' => 'multipart/form-data']) !!}
                     @endif
                         
                     <div class="form-group">
                         {!! Form::label('title', 'Title', []) !!}
-                        {!! Form::text('title', isset($post) ? $post->title : '', ['class' => 'form-control', 'placeholder' => 'Nhập dữ liệu...']) !!}
+                        {!! Form::text('title', isset($post) ? $post->title : '', ['class' => 'form-control mt-auto', 'placeholder' => 'Nhập dữ liệu...']) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('Category', 'Category', []) !!}
-                        {!! Form::select('category_id', $category, isset($post) ? $post->category_id : '', ['class' => 'form-control']) !!}
-
+                        {!! Form::select('category_id', $category, isset($post) ? $post->category_id : '', ['class' => 'form-control mt-auto']) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('content', 'Content', []) !!}
                         {!! Form::textarea('content', isset($post) ? $post->content : '', [
                             'style' => 'resize:none',
-                            'class' => 'form-control',
+                            'class' => 'form-control mt-auto',
                             'placeholder' => 'Nhập dữ liệu...',
                         ]) !!}
+                       
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('Image', 'Image') !!}
+                        {!! Form::file('image', ['class' => 'form-control-file mt-3']) !!}
+                        @if (!empty($post))
+                            <img width="100%" src="{{ asset('uploads/artical/' . $post->image) }}">
+                        @endif
                     </div>
                     <div class="form-group">
                         {!! Form::label('author', 'Author', []) !!}
-                        {!! Form::text('author', isset($post) ? $post->author : '', ['class' => 'form-control', 'placeholder' => 'Nhập dữ liệu...']) !!}
+                        {!! Form::text('author', isset($post) ? $post->author : '', ['class' => 'form-control mt-auto', 'placeholder' => 'Nhập dữ liệu...']) !!}
                     </div>
                     @if(!isset($post))
                     {!! Form::submit('Thêm', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
