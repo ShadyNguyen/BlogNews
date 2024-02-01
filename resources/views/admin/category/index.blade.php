@@ -56,6 +56,8 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
+                                        <th>Slug</th>
+
                                         <th class="w-1">Manage</th>
                                     </tr>
                                 </thead>
@@ -64,6 +66,7 @@
                                         <tr>
                                             <th scope="row">{{ $key }}</th>
                                             <td>{{ $cate->name }}</td>
+                                            <td>{{ $cate->slug }}</td>
                                             <td>
                                                 {!! Form::open([
                                                     'method' => 'DELETE',

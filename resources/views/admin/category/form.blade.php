@@ -30,7 +30,11 @@
                         
                     <div class="form-group">
                         {!! Form::label('name', 'Name', []) !!}
-                        {!! Form::text('name', isset($category) ? $category->name : '', ['class' => 'form-control', 'placeholder' => 'Nhập dữ liệu...']) !!}
+                        {!! Form::text('name', isset($category) ? $category->name : '', ['class' => 'form-control', 'placeholder' => 'Nhập dữ liệu...' , 'id' => 'slug', 'onkeyup'=>'ChangeToSlug()']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('slug', 'Slug', []) !!}
+                        {!! Form::text('slug', isset($category) ? $category->slug : '', ['class' => 'form-control', 'placeholder' => 'Nhập dữ liệu...', 'id' => 'convert_slug']) !!}
                     </div>
                     @if(!isset($category))
                     {!! Form::submit('Thêm', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}

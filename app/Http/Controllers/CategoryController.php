@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $list = Category::orderBy('id', 'DESC')->get();
-        return view('admin.category.index',compact('list'));
+        return view('admin.category.index', compact('list'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function create()
     {
         $list = Category::all();
-        return view('admin.category.form',compact('list'));
+        return view('admin.category.form', compact('list'));
     }
 
     /**
@@ -39,18 +39,22 @@ class CategoryController extends Controller
     {
         $data = $request->validate(
             [
-                'name' =>'required|unique:categories|max:255',
+                'name' => 'required|unique:categories|max:255',
+                'slug' => 'required|unique:categories'
             ],
             [
-                'name.unique' =>'Tên danh mục đã có ,xin điền tên khác',
-                'name.required' =>'Vui lòng điền tên danh mục!',
+                'name.unique' => 'Tên danh mục đã có ,xin điền tên khác',
+                'name.required' => 'Vui lòng điền tên danh mục!',
+                'slug.required' => 'Vui lòng điền đường dẫn!',
+                'slug.unique' => 'Vui lòng điền đường dẫn khác',
             ]
         );
 
         $category = new Category();
-        $category->name =$data['name'];
+        $category->name = $data['name'];
+        $category->slug = $data['slug'];
         $category->save();
-        toastr()->success('Thành công','Thêm danh mục thành công.');
+        toastr()->success('Thành công', 'Thêm danh mục thành công.');
         return redirect()->route('category.index');
     }
 
@@ -75,7 +79,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $list = Category::all();
-        return view('admin.category.form',compact('list','category'));
+        return view('admin.category.form', compact('list', 'category'));
     }
 
     /**
@@ -89,16 +93,21 @@ class CategoryController extends Controller
     {
         $data = $request->validate(
             [
-                'name' =>'required|max:255',
+                'name' => 'required|max:255',
+                'slug' => 'required',
+
             ],
             [
-                'name.required' =>'Vui lòng điền tên danh mục!',
+                'name.required' => 'Vui lòng điền tên danh mục!',
+                'slug.required' => 'Vui lòng điền đường dẫn!',
+
             ]
         );
         $category =  Category::find($id);
-        $category->name =$data['name'];
+        $category->name = $data['name'];
+        $category->slug = $data['slug'];
         $category->save();
-        toastr()->success('Thành công','Sửa danh mục thành công.');
+        toastr()->success('Thành công', 'Sửa danh mục thành công.');
         return redirect()->route('category.index');
     }
 

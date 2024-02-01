@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -16,8 +17,8 @@ class PostController extends Controller
     public function index()
     {
         $list = Post::orderBy('id', 'DESC')->get();
-        $category = Category::pluck('name','id');
-        return view('admin.post.index',compact('list','category'));
+        $category = Category::pluck('name', 'id');
+        return view('admin.post.index', compact('list', 'category'));
     }
 
     /**
@@ -28,9 +29,9 @@ class PostController extends Controller
     public function create()
     {
         $list = Post::all();
-        $category = Category::pluck('name','id');
+        $category = Category::pluck('name', 'id');
 
-        return view('admin.post.form',compact('list','category'));
+        return view('admin.post.form', compact('list', 'category'));
     }
 
     /**
@@ -43,28 +44,34 @@ class PostController extends Controller
     {
         $data = $request->validate(
             [
-                'title' =>'required|unique:posts|max:255',
-                'content' =>'required',
+                'title' => 'required|unique:posts|max:255',
+                'content' => 'required',
                 'author' => 'required',
+                'slug' => 'required|unique:posts',
                 'category_id' => 'required',
                 'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
-
             ],
             [
-                'title.unique' =>'Tên danh mục đã có ,xin điền tên khác',
-                'title.required' =>'Vui lòng điền tên bài viết!',
-                'content.required' =>'Vui lòng điền nội dung!',
-                'author.required' =>'Vui lòng điền tên tác giả!',
-                'category_id.required' =>'Vui lòng điền tên danh mục!',
-
+                'title.unique' => 'Tên danh mục đã có ,xin điền tên khác',
+                'title.required' => 'Vui lòng điền tên bài viết!',
+                'content.required' => 'Vui lòng điền nội dung!',
+                'author.required' => 'Vui lòng điền tên tác giả!',
+                'category_id.required' => 'Vui lòng điền tên danh mục!',
+                'slug.required' => 'Vui lòng điền đường dẫn',
+                'slug.unique' => 'Đường dãn này đã có hãy điền đường dẫn khác!',
             ]
         );
 
         $post = new Post();
-        $post->title =$data['title'];
-        $post->category_id =$data['category_id'];
-        $post->content =$data['content'];
-        $post->author =$data['author'];
+        $post->title = $data['title'];
+        $post->category_id = $data['category_id'];
+        $post->content = $data['content'];
+        $post->author = $data['author'];
+        $post->slug = $data['slug'];
+
+        // $post->create_at = Carbon::now('Asia/Ho_Chi_Minh');
+        // $post->update_at = Carbon::now('Asia/Ho_Chi_Minh');
+
         $get_image = $request->file('image');
         if ($get_image) {
             $get_name_image = $get_image->getClientOriginalName(); // hinhanh1.jpg
@@ -74,7 +81,7 @@ class PostController extends Controller
             $post->image = $new_image;
         }
         $post->save();
-        toastr()->success('Thành công','Thêm danh mục thành công.');
+        toastr()->success('Thành công', 'Thêm danh mục thành công.');
         return redirect()->route('post.index');
     }
 
@@ -98,9 +105,9 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        $category = Category::pluck('name','id');
+        $category = Category::pluck('name', 'id');
         $list = Post::all();
-        return view('admin.post.form',compact('list','post','category'));
+        return view('admin.post.form', compact('list', 'post', 'category'));
     }
 
     /**
@@ -114,24 +121,28 @@ class PostController extends Controller
     {
         $data = $request->validate(
             [
-                'title' =>'required|max:255',
-                'content' =>'required',
+                'title' => 'required|max:255',
+                'content' => 'required',
                 'author' => 'required',
                 'category_id' => 'required',
+                'slug' => 'required',
             ],
             [
-                'title.required' =>'Vui lòng điền tên bài viết!',
-                'content.required' =>'Vui lòng điền nội dung!',
-                'author.required' =>'Vui lòng điền tên tác giả!',
-                'category_id.required' =>'Vui lòng điền tên danh mục!',
+                'title.required' => 'Vui lòng điền tên bài viết!',
+                'content.required' => 'Vui lòng điền nội dung!',
+                'author.required' => 'Vui lòng điền tên tác giả!',
+                'category_id.required' => 'Vui lòng điền tên danh mục!',
+                'slug.required' => 'Vui lòng điền đường dẫn',
 
             ]
         );
         $post =  Post::find($id);
-        $post->title =$data['title'];
-        $post->category_id =$data['category_id'];
-        $post->content =$data['content'];
-        $post->author =$data['author'];
+        $post->title = $data['title'];
+        $post->category_id = $data['category_id'];
+        $post->content = $data['content'];
+        $post->author = $data['author'];
+        $post->slug = $data['slug'];
+        // $post->update_at = Carbon::now('Asia/Ho_Chi_Minh');
         $get_image = $request->file('image');
         if ($get_image) {
             $get_name_image = $get_image->getClientOriginalName(); // hinhanh1.jpg
@@ -141,7 +152,7 @@ class PostController extends Controller
             $post->image = $new_image;
         }
         $post->save();
-        toastr()->success('Thành công','Sửa bài viết thành công.');
+        toastr()->success('Thành công', 'Sửa bài viết thành công.');
         return redirect()->route('post.index');
     }
 

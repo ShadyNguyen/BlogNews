@@ -58,19 +58,19 @@
         autoplay: false,
         infinite: true,
         dots: false,
-        slidesToShow: 2,
+        slidesToShow: 3,
         slidesToScroll: 1,
         responsive: [
             {
                 breakpoint: 1200,
                 settings: {
-                    slidesToShow: 2
+                    slidesToShow: 3
                 }
             },
             {
                 breakpoint: 992,
                 settings: {
-                    slidesToShow: 1
+                    slidesToShow: 2
                 }
             },
             {
@@ -87,6 +87,7 @@
             }
         ]
     });
+    
     
     
     // Related News Slider

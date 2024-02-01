@@ -30,7 +30,11 @@
                         
                     <div class="form-group">
                         {!! Form::label('title', 'Title', []) !!}
-                        {!! Form::text('title', isset($post) ? $post->title : '', ['class' => 'form-control mt-auto', 'placeholder' => 'Nhập dữ liệu...']) !!}
+                        {!! Form::text('title', isset($post) ? $post->title : '', ['class' => 'form-control mt-auto', 'placeholder' => 'Nhập dữ liệu...', 'id' => 'slug', 'onkeyup'=>'ChangeToSlug()']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('slug', 'Slug', []) !!}
+                        {!! Form::text('slug', isset($post) ? $post->slug : '', ['class' => 'form-control', 'placeholder' => 'Nhập dữ liệu...', 'id' => 'convert_slug']) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('Category', 'Category', []) !!}

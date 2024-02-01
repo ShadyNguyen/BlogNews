@@ -102,6 +102,6 @@ class UserController extends Controller
         $user->save();
 
         toastr()->success('Đổi mật khẩu thành công!');
-        return view('admin.profile.password');
+        return back();
     }
 }

@@ -26,9 +26,8 @@ use App\Http\Controllers\DashboardController;
 |
 */
 //user
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[IndexController::class,'home'])->name('homepage');
+Route::get('/bai-viet',[IndexController::class,'article'])->name('article');
 //auth
 Route::get('/login',[LoginController::class,'showLoginForm'])->name('showLoginForm');
 Route::post('/login',[LoginController::class,'login'])->name('login');
