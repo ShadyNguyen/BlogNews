@@ -9,7 +9,7 @@
                         @foreach ($post as $key => $pt)
                             <div class="col-md-6">
                                 <div class="tn-img-slider">
-                                    <img src="{{ asset('uploads/article/' . $pt->image) }}"  />
+                                    <img src="{{ asset('uploads/article/' . $pt->image) }}" />
                                     <div class="tn-title">
                                         <a href="#">{{ $pt->title }}</a>
                                     </div>
@@ -24,7 +24,8 @@
                         @foreach ($post->take(4) as $key => $pt)
                             <div class="col-md-6">
                                 <div class="tn-img">
-                                    <img src="{{ asset('uploads/article/' . $pt->image) }}"style="height:250px; width:350px; object-fit:cover;"  />
+                                    <img
+                                        src="{{ asset('uploads/article/' . $pt->image) }}"style="height:250px; width:350px; object-fit:cover;" />
                                     <div class="tn-title">
                                         <a href="#">{{ $pt->title }}</a>
 
@@ -45,14 +46,14 @@
     <div class="cat-news">
         <div class="container">
             <div class="row">
-                @foreach ($category->take(4) as $cate)
+                {{-- @foreach ($category->take(4) as $cate)
                     <div class="col-md-6">
                         <h2>{{ $cate->name }}</h2>
                         <div class="row cn-slider">
                             <div class="col-md-6">
                                 <div class="cn-img">
-                                    @foreach ($cate->posts as $post)
-                                        <img src="{{ asset('uploads/article/' . $post->image) }}"  />
+                                    @foreach ($post_cate[$cate->name] as $post)
+                                        <img src="{{ asset('uploads/article/' . $post->image) }}" />
                                         <div class="tn-title">
                                             <a href="#">{{ $post->title }}</a>
                                         </div>
@@ -61,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @endforeach --}}
             </div>
         </div>
     </div>
@@ -88,82 +89,42 @@
 
                     <div class="tab-content">
                         <div id="featured" class="container tab-pane active">
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-1.jpg') }}" />
+                            @foreach ($post->take(3) as $key => $pt)
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{ asset('uploads/article/' . $pt->image) }}" />
+                                    </div>
+                                    <div class="tn-title" style=" overflow:hidden">
+                                        <a href="">{{ $pt->title }}</a>
+                                    </div>
                                 </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-2.jpg') }}" />
-                                </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-3.jpg') }}" />
-                                </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                         <div id="popular" class="container tab-pane fade">
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-4.jpg') }}" />
+                            @foreach ($post->take(3) as $key => $pt)
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{ asset('uploads/article/' . $pt->image) }}" />
+                                    </div>
+                                    <div class="tn-title" style=" overflow:hidden">
+                                        <a href="">{{ $pt->title }}</a>
+                                    </div>
                                 </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-5.jpg') }}" />
-                                </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-1.jpg') }}" />
-                                </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                         <div id="latest" class="container tab-pane fade">
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-2.jpg') }}" />
+                            @foreach ($post->take(3) as $key => $pt)
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{ asset('uploads/article/' . $pt->image) }}" />
+                                    </div>
+                                    <div class="tn-title" style=" overflow:hidden">
+                                        <a href="">{{ $pt->title }}</a>
+                                    </div>
                                 </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-3.jpg') }}" />
-                                </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-4.jpg') }}" />
-                                </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -183,82 +144,43 @@
 
                     <div class="tab-content">
                         <div id="m-viewed" class="container tab-pane active">
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-5.jpg') }}" />
+                            @foreach ($post->take(3) as $key => $pt)
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{ asset('uploads/article/' . $pt->image) }}" />
+                                    </div>
+                                    <div class="tn-title" style=" overflow:hidden">
+                                        <a href="">{{ $pt->title }}</a>
+                                    </div>
                                 </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-4.jpg') }}" />
-                                </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-3.jpg') }}" />
-                                </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                         <div id="m-read" class="container tab-pane fade">
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-2.jpg') }}" />
+                            @foreach ($post->take(3) as $key => $pt)
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{ asset('uploads/article/' . $pt->image) }}" />
+                                    </div>
+                                    <div class="tn-title" style=" overflow:hidden">
+                                        <a href="">{{ $pt->title }}</a>
+                                    </div>
                                 </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-1.jpg') }}" />
-                                </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-3.jpg') }}" />
-                                </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                         <div id="m-recent" class="container tab-pane fade">
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-4.jpg') }}" />
+                            @foreach ($post->take(3) as $key => $pt)
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{ asset('uploads/article/' . $pt->image) }}" />
+                                    </div>
+                                    <div class="tn-title" style=" overflow:hidden">
+                                        <a href="">{{ $pt->title }}</a>
+                                    </div>
                                 </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-5.jpg') }}" />
-                                </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
-                            <div class="tn-news">
-                                <div class="tn-img">
-                                    <img src="{{ asset('frontend/img/news-350x223-1.jpg') }}" />
-                                </div>
-                                <div class="tn-title">
-                                    <a href="">Lorem ipsum dolor sit amet</a>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -273,78 +195,18 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="row">
+                        @foreach ($post as $key => $pt)
                         <div class="col-md-4">
                             <div class="mn-img">
-                                <img src="{{ asset('frontend/img/news-350x223-1.jpg') }}" />
+                                <img src="{{ asset('uploads/article/'.$pt->image) }}" />
                                 <div class="mn-title">
-                                    <a href="">Lorem ipsum dolor sit</a>
+                                    <a href="">{{$pt->title}}</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="mn-img">
-                                <img src="{{ asset('frontend/img/news-350x223-2.jpg') }}" />
-                                <div class="mn-title">
-                                    <a href="">Lorem ipsum dolor sit</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mn-img">
-                                <img src="{{ asset('frontend/img/news-350x223-3.jpg') }}" />
-                                <div class="mn-title">
-                                    <a href="">Lorem ipsum dolor sit</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mn-img">
-                                <img src="{{ asset('frontend/img/news-350x223-4.jpg') }}" />
-                                <div class="mn-title">
-                                    <a href="">Lorem ipsum dolor sit</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mn-img">
-                                <img src="{{ asset('frontend/img/news-350x223-5.jpg') }}" />
-                                <div class="mn-title">
-                                    <a href="">Lorem ipsum dolor sit</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mn-img">
-                                <img src="{{ asset('frontend/img/news-350x223-1.jpg') }}" />
-                                <div class="mn-title">
-                                    <a href="">Lorem ipsum dolor sit</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mn-img">
-                                <img src="{{ asset('frontend/img/news-350x223-2.jpg') }}" />
-                                <div class="mn-title">
-                                    <a href="">Lorem ipsum dolor sit</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mn-img">
-                                <img src="{{ asset('frontend/img/news-350x223-3.jpg') }}" />
-                                <div class="mn-title">
-                                    <a href="">Lorem ipsum dolor sit</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mn-img">
-                                <img src="{{ asset('frontend/img/news-350x223-4.jpg') }}" />
-                                <div class="mn-title">
-                                    <a href="">Lorem ipsum dolor sit</a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+                        
+                        
                     </div>
                 </div>
 
@@ -352,16 +214,11 @@
                     <div class="mn-list">
                         <h2>Read More</h2>
                         <ul>
-                            <li><a href="">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="">Pellentesque tincidunt enim libero</a></li>
-                            <li><a href="">Morbi id finibus diam vel pretium enim</a></li>
-                            <li><a href="">Duis semper sapien in eros euismod sodales</a></li>
-                            <li><a href="">Vestibulum cursus lorem nibh</a></li>
-                            <li><a href="">Morbi ullamcorper vulputate metus non eleifend</a></li>
-                            <li><a href="">Etiam vitae elit felis sit amet</a></li>
-                            <li><a href="">Nullam congue massa vitae quam</a></li>
-                            <li><a href="">Proin sed ante rutrum</a></li>
-                            <li><a href="">Curabitur vel lectus</a></li>
+                            @foreach ($post as $key => $pt)
+                                <li>
+                                    <a href="#">{{ $pt->title }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

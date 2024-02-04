@@ -30,7 +30,6 @@ class PostController extends Controller
     {
         $list = Post::all();
         $category = Category::pluck('name', 'id');
-
         return view('admin.post.form', compact('list', 'category'));
     }
 
