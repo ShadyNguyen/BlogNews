@@ -27,7 +27,8 @@ use App\Http\Controllers\DashboardController;
 */
 //user
 Route::get('/',[IndexController::class,'home'])->name('homepage');
-Route::get('/bai-viet',[IndexController::class,'article'])->name('article');
+Route::get('/bai-viet',[IndexController::class,'article'])->name('bai-viet');
+Route::get('/danh-muc/{slug}',[IndexController::class,'category'])->name('danh-muc');
 //auth
 Route::get('/login',[LoginController::class,'showLoginForm'])->name('showLoginForm');
 Route::post('/login',[LoginController::class,'login'])->name('login');
@@ -49,7 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function (){
 
-    Route::get('/', [DashboardController::class, 'render'])->name('index');
+    Route::get('/', [DashboardController::class, 'ren  der'])->name('index');
     Route::resource('/roles', RoleController::class);
     Route::post('/roles/{role}/permissions',[RoleController::class, 'givePermission'])->name('roles.permissions');
     Route::resource('/permissions', PermissionController::class);

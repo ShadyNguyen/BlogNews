@@ -10,17 +10,20 @@ class IndexController extends Controller
 {
     public function home()
     {
-        $category = Category::orderBy('id', 'asc')->get();
-        // $post_cate = [];
-        // foreach ($category as $cate) {
-        //     $post_cate[$cate->name] = Post::where('category_id', $cate->id)->get();
-        // }
+        $category = Category::all();
         $post = Post::all();
+        $post_cate = [];
+        foreach ($category as $cate) {
+            $posts = Post::where('category_id', $cate->id)->get();
+            $post_cate[$cate->id] = $posts;
+        }
+        return view('pages.home', compact('post', 'category', 'post_cate'));
+    }
 
-        // foreach ($category as $cate) {
-        //     $cate->posts = Post::where('category_id', $cate->id)->get();
-        // }
-        return view('pages.home', compact('post', 'category',));
+    public function category($slug){
+        $category = Category::where('slug', $slug)->orderBy('id','desc')->get();
+        dd($category);
+        // return view('pages.category',compact('category'));
     }
 
     public function article()

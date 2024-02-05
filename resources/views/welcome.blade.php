@@ -1,228 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Blog</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="Blog" name="keywords">
-        <meta content="Blog" name="description">
 
-        <!-- Favicon -->
-        <link href="{{asset('frontend/img/favicon.ico')}}" rel="icon">
+<head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Blog" name="keywords">
+    <meta content="Blog" name="description">
 
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet"> 
+    <!-- Favicon -->
+    <link href="{{ asset('frontend/img/favicon.ico') }}" rel="icon">
 
-        <!-- CSS Libraries -->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-        <link href="{{asset('frontend/lib/slick/slick.css')}}" rel="stylesheet">
-        <link href="{{asset('frontend/lib/slick/slick-theme.css')}}" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
 
-        <!-- Template Stylesheet -->
-        <link href="{{asset('frontend/css/style.css')}}" rel="stylesheet">
-    </head>
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ asset('frontend/lib/slick/slick.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/lib/slick/slick-theme.css') }}" rel="stylesheet">
 
-    <body>
-        <!-- Top Bar Start -->
-        <div class="top-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="tb-contact">
-                            <p><i class="fas fa-envelope"></i>info@mail.com</p>
-                            <p><i class="fas fa-phone-alt"></i>+012 345 6789</p>
-                        </div>
+    <!-- Template Stylesheet -->
+    <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Top Bar Start -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="tb-contact">
+                        <p><i class="fas fa-envelope"></i>info@mail.com</p>
+                        <p><i class="fas fa-phone-alt"></i>+012 345 6789</p>
                     </div>
-                    <div class="col-md-6">
-                        <div class="tb-menu">
-                            <a href="">About</a>
-                            <a href="">Privacy</a>
-                            <a href="">Terms</a>
-                            <a href="">Contact</a>
-                        </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tb-menu">
+                        <a href="">About</a>
+                        <a href="">Privacy</a>
+                        <a href="">Terms</a>
+                        <a href="">Contact</a>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Top Bar Start -->
-        
-        <!-- Brand Start -->
-        <div class="brand">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-3 col-md-4">
-                        <div class="b-logo">
-                            <a href="index.html">
-                                <img src="{{asset('frontend/img/logo.png')}}" alt="Logo">
-                            </a>
-                        </div>
+    </div>
+    <!-- Top Bar Start -->
+
+    <!-- Brand Start -->
+    <div class="brand">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3 col-md-4">
+                    <div class="b-logo">
+                        <a href="index.html">
+                            <img src="{{ asset('frontend/img/logo.png') }}" alt="Logo">
+                        </a>
                     </div>
-                    <div class="col-lg-6 col-md-4">
-                        <div class="b-ads">
-                            <a href="https://htmlcodex.com">
-                                <img src="{{asset('frontend/img/ads-1.jpg')}}"alt="Ads">
-                            </a>
-                        </div>
+                </div>
+                <div class="col-lg-6 col-md-4">
+                    <div class="b-ads">
+                        <a href="https://htmlcodex.com">
+                            <img src="{{ asset('frontend/img/ads-1.jpg') }}"alt="Ads">
+                        </a>
                     </div>
-                    <div class="col-lg-3 col-md-4">
-                        <div class="b-search">
-                            <input type="text" placeholder="Search">
-                            <button><i class="fa fa-search"></i></button>
-                        </div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <div class="b-search">
+                        <input type="text" placeholder="Search">
+                        <button><i class="fa fa-search"></i></button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Brand End -->
+    </div>
+    <!-- Brand End -->
 
-        <!-- Nav Bar Start -->
-        <div class="nav-bar">
-            <div class="container">
-                <nav class="navbar navbar-expand-md bg-dark navbar-dark" style="height: 50px; position: relative;">
-                    <a href="#" class="navbar-brand">MENU</a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+    <!-- Nav Bar Start -->
+    <div class="nav-bar">
+        <div class="container">
+            <nav class="navbar navbar-expand-md bg-dark navbar-dark" style="height: 50px; position: relative;">
+                <a href="#" class="navbar-brand">MENU</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto">
-                            <a href="{{route('homepage')}}" class="nav-item nav-link active">Home</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Danh Mục</a>
-                                <div class="dropdown-menu">
-                                    @foreach ($category as $key => $cate)
-                                    <a href="#" class="dropdown-item">{{$cate->name}}</a>
-                                    @endforeach
-                                </div>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto">
+                        <a href="{{ route('homepage') }}" class="nav-item nav-link active">Home</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Danh Mục</a>
+                            <div class="dropdown-menu">
+                                @foreach ($category as $key => $cate)
+                                    <a href="{{ route('danh-muc', $cate->slug) }}" class="dropdown-item">
+                                        <span>
+                                            {{ $cate->name }}
+                                        </span>
+                                    </a>
+                                @endforeach
                             </div>
-                            <a href="{{route('article')}}" class="nav-item nav-link">Article</a>
-                            
                         </div>
-                        <div class="social ml-auto">
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                            <a href=""><i class="fab fa-youtube"></i></a>
-                        </div>
+                        <a href="{{ route('bai-viet') }}" class="nav-item nav-link">Article</a>
+
                     </div>
-                </nav>
-            </div>
+                    <div class="social ml-auto">
+                        <a href=""><i class="fab fa-twitter"></i></a>
+                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a href=""><i class="fab fa-instagram"></i></a>
+                        <a href=""><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </nav>
         </div>
-        <!-- Nav Bar End -->
+    </div>
+    <!-- Nav Bar End -->
 
-        <!-- Top News Start-->
-       @yield('content')
+    <!-- Top News Start-->
+    @yield('content')
 
-        <!-- Footer Start -->
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h3 class="title">Get in Touch</h3>
-                            <div class="contact-info">
-                                <p><i class="fa fa-map-marker"></i>123 News Street, NY, USA</p>
-                                <p><i class="fa fa-envelope"></i>info@example.com</p>
-                                <p><i class="fa fa-phone"></i>+123-456-7890</p>
-                                <div class="social">
-                                    <a href=""><i class="fab fa-twitter"></i></a>
-                                    <a href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a href=""><i class="fab fa-instagram"></i></a>
-                                    <a href=""><i class="fab fa-youtube"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h3 class="title">Useful Links</h3>
-                            <ul>
-                                <li><a href="#">Lorem ipsum</a></li>
-                                <li><a href="#">Pellentesque</a></li>
-                                <li><a href="#">Aenean vulputate</a></li>
-                                <li><a href="#">Vestibulum sit amet</a></li>
-                                <li><a href="#">Nam dignissim</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h3 class="title">Quick Links</h3>
-                            <ul>
-                                <li><a href="#">Lorem ipsum</a></li>
-                                <li><a href="#">Pellentesque</a></li>
-                                <li><a href="#">Aenean vulputate</a></li>
-                                <li><a href="#">Vestibulum sit amet</a></li>
-                                <li><a href="#">Nam dignissim</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h3 class="title">Newsletter</h3>
-                            <div class="newsletter">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed porta dui. Class aptent taciti sociosqu
-                                </p>
-                                <form>
-                                    <input class="form-control" type="email" placeholder="Your email here">
-                                    <button class="btn">Submit</button>
-                                </form>
+    <!-- Footer Start -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h3 class="title">Get in Touch</h3>
+                        <div class="contact-info">
+                            <p><i class="fa fa-map-marker"></i>123 News Street, NY, USA</p>
+                            <p><i class="fa fa-envelope"></i>info@example.com</p>
+                            <p><i class="fa fa-phone"></i>+123-456-7890</p>
+                            <div class="social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                                <a href=""><i class="fab fa-youtube"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-        
-        <!-- Footer Menu Start -->
-        <div class="footer-menu">
-            <div class="container">
-                <div class="f-menu">
-                    <a href="">Terms of use</a>
-                    <a href="">Privacy policy</a>
-                    <a href="">Cookies</a>
-                    <a href="">Accessibility help</a>
-                    <a href="">Advertise with us</a>
-                    <a href="">Contact us</a>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h3 class="title">Useful Links</h3>
+                        <ul>
+                            <li><a href="#">Lorem ipsum</a></li>
+                            <li><a href="#">Pellentesque</a></li>
+                            <li><a href="#">Aenean vulputate</a></li>
+                            <li><a href="#">Vestibulum sit amet</a></li>
+                            <li><a href="#">Nam dignissim</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h3 class="title">Quick Links</h3>
+                        <ul>
+                            <li><a href="#">Lorem ipsum</a></li>
+                            <li><a href="#">Pellentesque</a></li>
+                            <li><a href="#">Aenean vulputate</a></li>
+                            <li><a href="#">Vestibulum sit amet</a></li>
+                            <li><a href="#">Nam dignissim</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h3 class="title">Newsletter</h3>
+                        <div class="newsletter">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed porta dui. Class
+                                aptent taciti sociosqu
+                            </p>
+                            <form>
+                                <input class="form-control" type="email" placeholder="Your email here">
+                                <button class="btn">Submit</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Footer Menu End -->
+    </div>
+    <!-- Footer End -->
 
-        <!-- Footer Bottom Start -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 copyright">
-                        <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
-                    </div>
+    <!-- Footer Menu Start -->
+    <div class="footer-menu">
+        <div class="container">
+            <div class="f-menu">
+                <a href="">Terms of use</a>
+                <a href="">Privacy policy</a>
+                <a href="">Cookies</a>
+                <a href="">Accessibility help</a>
+                <a href="">Advertise with us</a>
+                <a href="">Contact us</a>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Menu End -->
 
-                    <div class="col-md-6 template-by">
-                        <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
-                    </div>
+    <!-- Footer Bottom Start -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 copyright">
+                    <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
+                </div>
+
+                <div class="col-md-6 template-by">
+                    <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
                 </div>
             </div>
         </div>
-        <!-- Footer Bottom End -->
+    </div>
+    <!-- Footer Bottom End -->
 
-        <!-- Back to Top -->
-        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <script src="{{asset('frontend/lib/easing/easing.min.js')}}"></script>
-        <script src="{{asset('frontend/lib/slick/slick.min.js')}}"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('frontend/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('frontend/lib/slick/slick.min.js') }}"></script>
 
-        <!-- Template Javascript -->
-        <script src="{{asset('frontend/js/main.js')}}"></script>
-    </body>
+    <!-- Template Javascript -->
+    <script src="{{ asset('frontend/js/main.js') }}"></script>
+</body>
+
 </html>
