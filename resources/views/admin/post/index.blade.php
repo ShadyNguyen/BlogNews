@@ -88,9 +88,13 @@
                                                 <a href="{{route ('post.edit',$cate->id) }}" class="btn btn-info">Sửa</a>
                                             </td>
                                         </tr>
+                                        
                                     @endforeach
                                 </tbody>
                                 </tableclass="table>
+                                {{-- <ul class='page-numbers'>
+                                    {{ $cate->links()}}
+                                </ul> --}}
                         </div>
                     </div>
                 </div>

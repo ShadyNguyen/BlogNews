@@ -11,7 +11,7 @@
                                 <div class="tn-img-slider">
                                     <img src="{{ asset('uploads/article/' . $pt->image) }}" />
                                     <div class="tn-title">
-                                        <a href="#">{{ $pt->title }}</a>
+                                        <a href="{{route('bai-viet',$pt->slug)}}">{{ $pt->title }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -27,8 +27,7 @@
                                     <img
                                         src="{{ asset('uploads/article/' . $pt->image) }}"style="height:250px; width:350px; object-fit:cover;" />
                                     <div class="tn-title">
-                                        <a href="#">{{ $pt->title }}</a>
-
+                                        <a href="{{route('bai-viet',$pt->slug)}}">{{ $pt->title }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -45,8 +44,6 @@
     <!-- Category News Start-->
     
     <!-- Category News End-->
-
-
 
     <!-- Tab News Start-->
     <div class="tab-news">
@@ -73,7 +70,7 @@
                                         <img src="{{ asset('uploads/article/' . $pt->image) }}" />
                                     </div>
                                     <div class="tn-title" style=" overflow:hidden">
-                                        <a href="">{{ $pt->title }}</a>
+                                        <a href="{{route('bai-viet',$pt->slug)}}">{{ $pt->title }}</a>
                                     </div>
                                 </div>
                             @endforeach
@@ -86,7 +83,7 @@
                                         <img src="{{ asset('uploads/article/' . $pt->image) }}" />
                                     </div>
                                     <div class="tn-title" style=" overflow:hidden">
-                                        <a href="">{{ $pt->title }}</a>
+                                        <a href="{{route('bai-viet',$pt->slug)}}">{{ $pt->title }}</a>
                                     </div>
                                 </div>
                             @endforeach
@@ -99,7 +96,7 @@
                                         <img src="{{ asset('uploads/article/' . $pt->image) }}" />
                                     </div>
                                     <div class="tn-title" style=" overflow:hidden">
-                                        <a href="">{{ $pt->title }}</a>
+                                        <a href="{{route('bai-viet',$pt->slug)}}">{{ $pt->title }}</a>
                                     </div>
                                 </div>
                             @endforeach
@@ -128,7 +125,7 @@
                                         <img src="{{ asset('uploads/article/' . $pt->image) }}" />
                                     </div>
                                     <div class="tn-title" style=" overflow:hidden">
-                                        <a href="">{{ $pt->title }}</a>
+                                        <a href="{{route('bai-viet',$pt->slug)}}">{{ $pt->title }}</a>
                                     </div>
                                 </div>
                             @endforeach
@@ -141,7 +138,7 @@
                                         <img src="{{ asset('uploads/article/' . $pt->image) }}" />
                                     </div>
                                     <div class="tn-title" style=" overflow:hidden">
-                                        <a href="">{{ $pt->title }}</a>
+                                        <a href="{{route('bai-viet',$pt->slug)}}">{{ $pt->title }}</a>
                                     </div>
                                 </div>
                             @endforeach
@@ -154,7 +151,7 @@
                                         <img src="{{ asset('uploads/article/' . $pt->image) }}" />
                                     </div>
                                     <div class="tn-title" style=" overflow:hidden">
-                                        <a href="">{{ $pt->title }}</a>
+                                        <a href="{{route('bai-viet',$pt->slug)}}">{{ $pt->title }}</a>
                                     </div>
                                 </div>
                             @endforeach
@@ -178,7 +175,7 @@
                                 <div class="mn-img">
                                     <img src="{{ asset('uploads/article/' . $pt->image) }}" />
                                     <div class="mn-title">
-                                        <a href="">{{ $pt->title }}</a>
+                                        <a href="{{route('bai-viet',$pt->slug)}}">{{ $pt->title }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -194,7 +191,7 @@
                         <ul>
                             @foreach ($post->take(5) as $key => $pt)
                                 <li>
-                                    <a href="#">{{ $pt->title }}</a>
+                                    <a href="{{route('bai-viet',$pt->slug)}}">{{ $pt->title }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -204,7 +201,6 @@
         </div>
     </div>
     <!-- Main News End-->
-
     <div class="cat-news">
         <div class="container">
             <div class="row">
@@ -217,7 +213,7 @@
                                     @foreach ($post_cate[$cate->id] as $post)
                                         <img src="{{ asset('uploads/article/' . $post->image) }}" />
                                         <div class="tn-title">
-                                            <a href="#">{{ $post->title }}</a>
+                                            <a href="{{route('bai-viet',$post->slug)}}">{{ $post->title }}</a>
                                         </div>
                                     @endforeach
                                 </div>

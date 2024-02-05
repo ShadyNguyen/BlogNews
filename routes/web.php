@@ -27,8 +27,9 @@ use App\Http\Controllers\DashboardController;
 */
 //user
 Route::get('/',[IndexController::class,'home'])->name('homepage');
-Route::get('/bai-viet',[IndexController::class,'article'])->name('bai-viet');
 Route::get('/danh-muc/{slug}',[IndexController::class,'category'])->name('danh-muc');
+Route::get('/bai-viet/{slug}',[IndexController::class,'article'])->name('bai-viet');
+
 //auth
 Route::get('/login',[LoginController::class,'showLoginForm'])->name('showLoginForm');
 Route::post('/login',[LoginController::class,'login'])->name('login');

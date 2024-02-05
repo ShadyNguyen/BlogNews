@@ -101,7 +101,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        <a href="{{ route('bai-viet') }}" class="nav-item nav-link">Article</a>
+                        {{-- <a href="{{ route('bai-viet',$post->slug) }}" class="nav-item nav-link">Article</a> --}}
 
                     </div>
                     <div class="social ml-auto">

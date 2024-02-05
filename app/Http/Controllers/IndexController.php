@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -20,17 +21,21 @@ class IndexController extends Controller
         return view('pages.home', compact('post', 'category', 'post_cate'));
     }
 
-    public function category($slug){
-        $category = Category::where('slug', $slug)->orderBy('id','desc')->get();
-        dd($category);
-        // return view('pages.category',compact('category'));
+    public function category($slug)
+    {
+        $category = Category::all();
+        $cate_slug = Category::where('slug', $slug)->firstOrFail();
+        $post = Post::where('category_id', $cate_slug->id)->orderBy('id', 'desc')->get();
+        return view('pages.category', compact('category', 'post', 'cate_slug'));
     }
 
-    public function article()
+
+    public function article($slug)
     {
-        $slider = Post::orderBy('id', 'desc')->take(5)->get();
-        $post = Post::all();
         $category = Category::all();
-        return view('pages.article', compact('slider', 'category', 'post'));
+        $post = Post::where('slug', $slug)->orderBy('updated_at', 'desc')->first();
+        $related = Post::with('category')->where('category_id', $post->category->id)->orderby(DB::raw('RAND()'))->whereNotIn('slug', [$slug])->get(); // hiển thị những phim ở phần có thể bạn muốn xem ramdom trừ phim đang chọn
+        $article = Post::all();
+        return view('pages.article', compact('category', 'post', 'related', 'article'));
     }
 }
