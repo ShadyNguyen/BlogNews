@@ -4,79 +4,82 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
-    public function index(): View
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $permissions = Permission::all();
-        return view('admin.permission.index', compact('permissions'));
+        //
     }
 
-    public function create(): View
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        return view('admin.permission.create');
+        //
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        $validated = $request->validate(
-            [
-                'name' => ['required', 'string', 'min:3']
-            ],
-            [
-                'name.required' => 'Permission là bắt buộc.',
-                'name.string' => 'Permission phải là một chuỗi ký tự.',
-                'name.min' => 'Permission phải có ít nhất 3 ký tự.'
-            ]
-        );
-
-        Permission::create($validated);
-
-        return view('admin.permissions.index')->with('message', 'Thêm permission thành công');
+        //
     }
 
-    public function edit(Permission $permission): View
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        $roles = Role::all();
-        return view('admin.permission.edit', compact('permission', 'roles'));
+        //
     }
 
-    public function update(Request $request, Permission $permission)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        $validated = $request->validate(
-            [
-                'name' => ['required', 'string']
-            ],
-            [
-                'name.required' => 'Permission là bắt buộc.',
-                'name.string' => 'Permission phải là một chuỗi ký tự.',
-            ]
-        );
-
-        $permission->update($validated);
-        return view('admin.permissions.index')->with('message', 'Sửa permission thành công');
+        //
     }
 
-    public function destroy(Permission $permission)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
-        $permission->delete();
-        return back()->with('message', 'Permission được xoá thành công');
+        //
     }
 
-    public function assignRole(Request $request, Permission $permission)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        $permission->roles()->detach();
-        if ($request->has('roles')) {
-            foreach ($request->input('roles', []) as $roleId) {
-                $role = Role::findById($roleId);
-                if ($role) {
-                    $permission->assignRole($role);
-                }
-            }
-        }
-        return back()->with('message', 'Cập nhật roles cho permission thành công');
+        //
     }
 }

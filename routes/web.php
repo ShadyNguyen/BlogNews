@@ -41,23 +41,25 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('update-profile/{id}',[UserController::class,'updateProfile'])->name('update-profile');
     Route::post('update-password/{id}',[UserController::class,'updatePassword'])->name('update-password');
 
-    Route::resource('/user',UserController::class);
+    Route::resource('/users',UserController::class);
     Route::get('/profile',[UserController::class,'profileUser'])->name('profile');
     Route::get('/profile/password',[UserController::class,'pwdUser'])->name('profile.pwd');
     Route::get('/home',[HomeController::class,'index'])->name('home');
     Route::resource('category', CategoryController::class);
     Route::resource('post',PostController::class);
-});
 
-Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function (){
-
-    Route::get('/', [DashboardController::class, 'ren  der'])->name('index');
+    Route::get('/', [DashboardController::class, 'render'])->name('index');
     Route::resource('/roles', RoleController::class);
     Route::post('/roles/{role}/permissions',[RoleController::class, 'givePermission'])->name('roles.permissions');
     Route::resource('/permissions', PermissionController::class);
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::post('/users/{user}/roles', [UserController::class, 'assignRole'])->name('users.roles');
-    Route::post('/users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
+    // Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    // Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    // Route::post('/users/{user}/roles', [UserController::class, 'assignRole'])->name('users.roles');
+    // Route::post('/users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
     Route::post('/permissions/{permission}/roles',[PermissionController::class, 'assignRole'])->name('permissions.roles');
 });
+
+// Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function (){
+
+  
+// });

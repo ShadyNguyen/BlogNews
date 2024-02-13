@@ -4,73 +4,122 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
-    public function index(): View
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $roles = Role::whereNotIn('name', ['admin'])->get();
-        return view('admin.roles.index', compact('roles'));
+        $list = Role::orderBy('id','DESC')->get();
+        return view('admin.roles.index',compact('list'));
     }
 
-    public function create(): View
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        return view('admin.roles.create');
+        $index = Role::all();
+        return view('admin.roles.form',compact('role'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        $validated = $request->validate(
+        $data = $request->validate(
             [
-                'name' => ['required', 'string', 'min:3']
+                'name' => 'required|unique:roles|max:255',
+                
             ],
             [
-                'name.required' => 'Role là bắt buộc.',
-                'name.string' => 'Role phải là một chuỗi ký tự.',
-                'name.min' => 'Role phải có ít nhất 3 ký tự.'
+                'name.unique' => 'Role đã có ,xin điền tên khác',
+                'name.required' => 'Vui lòng điền tên !',
+                
             ]
         );
 
-        Role::create($validated);
-
-        return view('admin.roles.index')->with('message', 'Thêm role thành công');
-    }
-    public function edit(Role $role): View
-    {
-        $permissions = Permission::all();
-        return view('admin.roles.edit', compact('role', 'permissions'));
+        $role = new Role();
+        $role->name = $data['name'];
+        $role->save();
+        toastr()->success('Thành công', 'Thêm Role thành công.');
+        return redirect()->route('roles.index');
     }
 
-    public function update(Request $request, Role $role)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        $validated = $request->validate(
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $role = Role::find($id);
+        $list = Role::all();
+        return view('admin.roles.form',compact('role','list'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $data = $request->validate(
             [
-                'name' => ['required', 'string']
+                'name' => 'required|unique:roles|max:255',
+                
             ],
             [
-                'name.required' => 'Role là bắt buộc.',
-                'name.string' => 'Role phải là một chuỗi ký tự.',
+                'name.unique' => 'Role đã có ,xin điền tên khác',
+                'name.required' => 'Vui lòng điền tên !',
+                
             ]
         );
 
-        $role->update($validated);
-        return view('admin.roles.index')->with('message', 'Sửa role thành công');
+        $role = Role::find($id);
+        $role->name = $data['name'];
+        $role->save();
+        toastr()->success('Thành công', 'Thêm Role thành công.');
+        return redirect()->route('roles.index');
     }
 
-    public function destroy(Role $role)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        $role->delete();
-        return back()->with('message', 'Role được xoá thành công');
-    }
-
-    public function givePermission(Request $request, Role $role)
-    {
-        $role->permissions()->detach();
-        $permissions = Permission::whereIn('id', $request->input('permissions', []))->pluck('name');
-        $role->givePermissionTo($permissions);
-        return back()->with('message', 'Cập nhật permission cho roles thành công');
+        Role::find($id)->delete();
+        toastr()->info('Thành công', 'Xoá Role thành công.');
+        return redirect()->route('roles.index');
     }
 }
