@@ -27,8 +27,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $index = Role::all();
-        return view('admin.roles.form',compact('role'));
+        $list = Role::all();
+        return view('admin.roles.form',compact('list'));
     }
 
     /**

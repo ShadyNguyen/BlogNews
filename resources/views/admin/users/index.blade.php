@@ -15,7 +15,7 @@
                     </h2>
                 </div>
                 <!-- Page title actions -->
-                <div class="col-auto ms-auto d-print-none">
+                {{-- <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
                         <a href="" class="btn btn-primary d-none d-sm-inline-block">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
@@ -40,7 +40,7 @@
                             </svg>
                         </a>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -58,6 +58,8 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Role</th>
+                                        {{-- <th class="w-1">Permission</th> --}}
+
                                         <th class="w-1">Manage</th>
                                     </tr>
                                 </thead>
@@ -67,8 +69,13 @@
                                             <th scope="row">{{ $key }}</th>
                                             <td>{{ $u->name }}</td>
                                             <td>{{ $u->email }}</td>
-                                            <td>{{ $u->role->name}}</td>
                                             <td>
+                                                @foreach ($u->roles as $key => $role)
+                                                    <span class="badge badge-info">{{ $role->name }}</span>
+                                                @endforeach
+                                            </td>
+                                            <td><a herf="{{ route('users.show',$u->id) }}" class="btn btn-azure">Edit</a>
+                                            {{-- <td>
                                                 {!! Form::open([
                                                     'method' => 'DELETE',
                                                     'route' => ['users.destroy', $u->id],
@@ -80,7 +87,7 @@
                                                 {!! Form::close() !!}
             
                                                 <a href="{{route ('users.edit',$u->id) }}" class="btn btn-info">Sửa</a>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     @endforeach
 

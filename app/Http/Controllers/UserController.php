@@ -13,16 +13,16 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        return view('admin.users.index', compact('users'));
+        $list = User::all();
+        return view('admin.users.index', compact('list'));
     }
 
-    public function show(User $user)
+    public function show($id)
     {
         $roles = Role::all();
         $permissions = Permission::all();
-
-        return view('admin.users.show', compact('user', 'roles', 'permissions'));
+        $list = User::all();
+        return view('admin.users.show', compact('list', 'roles', 'permissions'));
     }
 
     public function givePermission(Request $request, User $user)
@@ -30,21 +30,19 @@ class UserController extends Controller
         $user->permissions()->detach();
         $permissions = Permission::whereIn('id', $request->input('permissions', []))->pluck('name');
         $user->givePermissionTo($permissions);
-        return back()->with('message', 'Cập nhật permission cho user thành công');
+        toastr()->success('Cập nhât permission cho user thành công');
+        return redirect()->back();
     }
 
-    public function assignRole(Request $request, User $user)
+    public function assignRole(Request $request, $id)
     {
-        $user->roles()->detach();
-        if ($request->has('roles')) {
-            foreach ($request->input('roles', []) as $roleId) {
-                $role = Role::findById($roleId);
-                if ($role) {
-                    $user->assignRole($role);
-                }
-            }
-        }
-        return back()->with('message', 'Cập nhật roles cho user thành công');
+        $data = $request->all();
+        $user = User::find($id);
+        $user->syncRoles($data['role']);
+        // $user->assignRoles($data['user']);
+        // $user->removeRoles($data['role']);
+        toastr()->success('Cập nhât permission cho user thành công');
+        return redirect()->back();
     }
 
     public function profileUser()

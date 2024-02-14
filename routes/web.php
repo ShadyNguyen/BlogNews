@@ -54,8 +54,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/permissions', PermissionController::class);
     // Route::get('/users', [UserController::class, 'index'])->name('users.index');
     // Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    // Route::post('/users/{user}/roles', [UserController::class, 'assignRole'])->name('users.roles');
-    // Route::post('/users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
+    Route::post('/users/{id}/roles', [UserController::class, 'assignRole'])->name('users.roles');
+    Route::post('/users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
     Route::post('/permissions/{permission}/roles',[PermissionController::class, 'assignRole'])->name('permissions.roles');
 });
 

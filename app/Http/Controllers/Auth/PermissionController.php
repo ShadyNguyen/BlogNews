@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
@@ -14,7 +15,8 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $list = Permission::orderBy('id', 'asc')->get();
+        return view('admin.permissions.index', compact('list'));
     }
 
     /**
@@ -24,7 +26,8 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        $list = Permission::all();
+        return view('admin.permissions.form', compact('list'));
     }
 
     /**
@@ -35,7 +38,22 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate(
+            [
+                'name' => 'required|unique:permissions|max:255',
+            ]
+            ,[
+                'name.required' => 'Vui lòng điền tên Permissin',
+                'name.unique' => 'Đã có tên Permission này rồi,Vui lòng điền tên khác!',
+                'name.max' => 'Bạn nhập quá kí tự cho phép!'   
+            ]
+        );
+
+        $permission = new Permission();
+        $permission->name = $data['name'];
+        $permission->save();
+        toastr()->success('Thành Công','Thêm Permission thành công!');
+        return redirect()->route('permissions.index');
     }
 
     /**
@@ -57,7 +75,9 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $list = Permission::all();
+        $permission = Permission::find($id);
+        return view('admin.permissions.form',compact('list', 'permission'));
     }
 
     /**
@@ -69,7 +89,22 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate(
+            [
+                'name' => 'required|unique:permissions|max:255',
+            ]
+            ,[
+                'name.required' => 'Vui lòng điền tên Permissin',
+                'name.unique' => 'Đã có tên Permission này rồi,Vui lòng điền tên khác!',
+                'name.max' => 'Bạn nhập quá kí tự cho phép!'   
+            ]
+        );
+
+        $permission = new Permission();
+        $permission->name = $data['name'];
+        $permission->save();
+        toastr()->success('Thành Công','Cập Nhật Permission thành công!');
+        return redirect()->route('permissions.index');
     }
 
     /**
@@ -80,6 +115,9 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $permission = Permission::find($id);
+        $permission->delete();
+        toastr()->success('Thành Công','Xoá Permission thành công!');
+        return redirect()->route('permissions.index');
     }
 }
