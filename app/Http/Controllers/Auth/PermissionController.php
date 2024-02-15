@@ -10,60 +10,72 @@ use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
-    public function index(): View
+    public function index()
     {
-        $permissions = Permission::all();
-        return view('admin.permission.index', compact('permissions'));
+        $list = Permission::all();
+        return view('admin.permissions.index', compact('list'));
     }
 
-    public function create(): View
+    public function create()
     {
-        return view('admin.permission.create');
+        $list = Permission::all();
+        return view('admin.permissions.form', compact('list'));
     }
     public function store(Request $request)
     {
-        $validated = $request->validate(
+        $data = $request->validate(
+            [
+                'name' => ['required', 'string', 'min:3']
+            ],
+            [
+                'name.required' => 'permission là bắt buộc.',
+                'name.string' => 'permission phải là một chuỗi ký tự.',
+                'name.min' => 'permission phải có ít nhất 3 ký tự.'
+            ]
+        );
+
+        $permission = new Permission();
+        $permission->name = $data['name'];
+        $permission->save();
+        toastr()->success('Thành công', 'Thêm permission thành công.');
+        return redirect()->route('permissions.index');
+    }
+
+    public function edit($id)
+    {
+        $list = Permission::all();
+        $permission = Permission::find($id);
+        return view('admin.permissions.form', compact('permission', 'list'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->validate(
             [
                 'name' => ['required', 'string', 'min:3']
             ],
             [
                 'name.required' => 'Permission là bắt buộc.',
-                'name.string' => 'Permission phải là một chuỗi ký tự.',
-                'name.min' => 'Permission phải có ít nhất 3 ký tự.'
+                'name.string' => 'permission phải là một chuỗi ký tự.',
+                'name.min' => 'permission phải có ít nhất 3 ký tự.'
             ]
         );
 
-        Permission::create($validated);
-
-        return view('admin.permissions.index')->with('message', 'Thêm permission thành công');
+        $permission = Permission::find($id);
+        $permission->name = $data['name'];
+        $permission->save();
+        toastr()->success('Thành công', 'Cập nhật permission thành công.');
+        return redirect()->route('permissions.index');
     }
 
-    public function edit(Permission $permission): View
-    {
-        $roles = Role::all();
-        return view('admin.permission.edit', compact('permission', 'roles'));
-    }
 
-    public function update(Request $request, Permission $permission)
+    public function destroy($id)
     {
-        $validated = $request->validate(
-            [
-                'name' => ['required', 'string']
-            ],
-            [
-                'name.required' => 'Permission là bắt buộc.',
-                'name.string' => 'Permission phải là một chuỗi ký tự.',
-            ]
-        );
-
-        $permission->update($validated);
-        return view('admin.permissions.index')->with('message', 'Sửa permission thành công');
-    }
-
-    public function destroy(Permission $permission)
-    {
+        $permission = Permission::find($id);
         $permission->delete();
-        return back()->with('message', 'Permission được xoá thành công');
+        toastr()->success('Thành công', 'Xoá permission thành công.');
+        return redirect()->route('permissions.index');
+
     }
 
     public function assignRole(Request $request, Permission $permission)

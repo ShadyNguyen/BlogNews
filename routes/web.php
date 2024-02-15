@@ -47,11 +47,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home',[HomeController::class,'index'])->name('home');
     Route::resource('category', CategoryController::class);
     Route::resource('post',PostController::class);
-});
 
-Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function (){
-
-    Route::get('/', [DashboardController::class, 'ren  der'])->name('index');
+    // Route::get('/', [DashboardController::class, 'render'])->name('index');
     Route::resource('/roles', RoleController::class);
     Route::post('/roles/{role}/permissions',[RoleController::class, 'givePermission'])->name('roles.permissions');
     Route::resource('/permissions', PermissionController::class);
@@ -60,4 +57,9 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::post('/users/{user}/roles', [UserController::class, 'assignRole'])->name('users.roles');
     Route::post('/users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
     Route::post('/permissions/{permission}/roles',[PermissionController::class, 'assignRole'])->name('permissions.roles');
+
 });
+
+
+
+   

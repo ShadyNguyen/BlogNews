@@ -34,7 +34,7 @@
                     <div class="sn-related">
                         <h2>Related News</h2>
                         <div class="row sn-slider">
-                            @foreach ($related as $key => $relax)
+                            {{-- @foreach ($related as $key => $relax)
                                 <div class="col-md-4">
                                     <div class="sn-img">
                                         <img src="{{ asset('uploads/article/' . $relax->image) }}" />
@@ -43,7 +43,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @endforeach --}}
 
                         </div>
                     </div>

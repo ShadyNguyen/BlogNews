@@ -10,20 +10,21 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-    public function index(): View
+    public function index()
     {
-        $roles = Role::whereNotIn('name', ['admin'])->get();
-        return view('admin.roles.index', compact('roles'));
+        $list = Role::all();
+        return view('admin.roles.index', compact('list'));
     }
 
-    public function create(): View
+    public function create()
     {
-        return view('admin.roles.create');
+        $list = Role::all();
+        return view('admin.roles.form', compact('list'));
     }
 
     public function store(Request $request)
     {
-        $validated = $request->validate(
+        $data = $request->validate(
             [
                 'name' => ['required', 'string', 'min:3']
             ],
@@ -34,36 +35,44 @@ class RoleController extends Controller
             ]
         );
 
-        Role::create($validated);
-
-        return view('admin.roles.index')->with('message', 'Thêm role thành công');
+        $role = new Role();
+        $role->name = $data['name'];
+        $role->save();
+        toastr()->success('Thành công', 'Thêm Role thành công.');
+        return redirect()->route('roles.index');
     }
-    public function edit(Role $role): View
+    public function edit($id)
     {
-        $permissions = Permission::all();
-        return view('admin.roles.edit', compact('role', 'permissions'));
+        $list = Role::all();
+        $role = Role::find($id);
+        return view('admin.roles.form', compact('role', 'list'));
     }
 
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validate(
+        $data = $request->validate(
             [
-                'name' => ['required', 'string']
+                'name' => ['required', 'string', 'min:3']
             ],
             [
                 'name.required' => 'Role là bắt buộc.',
                 'name.string' => 'Role phải là một chuỗi ký tự.',
+                'name.min' => 'Role phải có ít nhất 3 ký tự.'
             ]
         );
 
-        $role->update($validated);
-        return view('admin.roles.index')->with('message', 'Sửa role thành công');
+        $role = Role::find($id);
+        $role->name = $data['name'];
+        $role->save();
+        toastr()->success('Thành công', 'Cập nhật Role thành công.');
+        return redirect()->route('roles.index');
     }
 
-    public function destroy(Role $role)
+    public function destroy($id)
     {
+        $role = Role::find($id);
         $role->delete();
-        return back()->with('message', 'Role được xoá thành công');
+        return redirect()->route('roles.index');
     }
 
     public function givePermission(Request $request, Role $role)

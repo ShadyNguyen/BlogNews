@@ -24,7 +24,7 @@ class IndexController extends Controller
     public function category($slug)
     {
         $category = Category::all();
-        $cate_slug = Category::where('slug', $slug)->firstOrFail();
+        $cate_slug = Category::where('slug', $slug)->first();
         $post = Post::where('category_id', $cate_slug->id)->orderBy('id', 'desc')->get();
         return view('pages.category', compact('category', 'post', 'cate_slug'));
     }
@@ -34,8 +34,8 @@ class IndexController extends Controller
     {
         $category = Category::all();
         $post = Post::where('slug', $slug)->orderBy('updated_at', 'desc')->first();
-        $related = Post::with('category')->where('category_id', $post->category->id)->orderby(DB::raw('RAND()'))->whereNotIn('slug', [$slug])->get(); // hiển thị những phim ở phần có thể bạn muốn xem ramdom trừ phim đang chọn
+        //$related = Post::with('category')->where('category_id', $post->category->id)->orderby(DB::raw('RAND()'))->whereNotIn('slug', [$slug])->get(); // hiển thị những phim ở phần có thể bạn muốn xem ramdom trừ phim đang chọn
         $article = Post::all();
-        return view('pages.article', compact('category', 'post', 'related', 'article'));
+        return view('pages.article', compact('category', 'post', 'article'));
     }
 }
