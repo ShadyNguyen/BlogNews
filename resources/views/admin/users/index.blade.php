@@ -62,12 +62,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($list as $key => $cate)
+                                    @foreach ($list as $key => $u)
                                         <tr>
                                             <th scope="row">{{ $key }}</th>
-                                            <td>{{ $cate->name }}</td>
+                                            <td>{{ $u->name }}</td>
                                             <td>
-                                                @foreach ($use->roles as $key => $role)
+                                                @foreach ($u->roles as $key => $role)
                                                     <span class="badge badge-info">{{ $role->name }}</span>
                                                 @endforeach
                                             </td>

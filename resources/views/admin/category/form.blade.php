@@ -42,6 +42,13 @@
                     {!! Form::submit('Cập Nhật', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
                     @endif
                     {!! Form::close() !!}
+                    <form action="">
+                        <div class="row">
+                            <div class="col">
+                                
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

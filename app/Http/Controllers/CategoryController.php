@@ -100,7 +100,6 @@ class CategoryController extends Controller
             [
                 'name.required' => 'Vui lòng điền tên danh mục!',
                 'slug.required' => 'Vui lòng điền đường dẫn!',
-
             ]
         );
         $category =  Category::find($id);

@@ -13,16 +13,16 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        return view('admin.users.index', compact('users'));
+        $list = User::all();
+        return view('admin.users.index', compact('list'));
     }
 
-    public function show(User $user)
+    public function show($id)
     {
         $roles = Role::all();
         $permissions = Permission::all();
-
-        return view('admin.users.show', compact('user', 'roles', 'permissions'));
+        $list = User::all();
+        return view('admin.users.show', compact('list', 'roles', 'permissions'));
     }
 
     public function givePermission(Request $request, User $user)

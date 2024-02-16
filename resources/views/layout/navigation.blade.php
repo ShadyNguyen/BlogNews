@@ -102,10 +102,7 @@
                     <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="">
-                                    Create
-                                </a>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{{route('user.index')}}">
                                     List
                                 </a>
                             </div>

@@ -23,7 +23,7 @@
                         </div>
                     @endif
                     @if(!@isset($permission))   
-                    {!! Form::open(['route' => 'permissionss.store', 'method' => 'POST']) !!}
+                    {!! Form::open(['route' => 'permissions.store', 'method' => 'POST']) !!}
                     @else
                     {!! Form::open(['route' => ['permissions.update', $permission->id], 'method' => 'PUT']) !!}
                     @endif

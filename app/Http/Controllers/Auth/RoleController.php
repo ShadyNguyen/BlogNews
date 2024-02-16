@@ -80,6 +80,7 @@ class RoleController extends Controller
         $role->permissions()->detach();
         $permissions = Permission::whereIn('id', $request->input('permissions', []))->pluck('name');
         $role->givePermissionTo($permissions);
-        return back()->with('message', 'Cập nhật permission cho roles thành công');
+        toastr()->success('Thành công', 'Phần Quyền thành công.');
+        return redirect()->back();
     }
 }
