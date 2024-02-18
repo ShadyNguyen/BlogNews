@@ -47,6 +47,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home',[HomeController::class,'index'])->name('home');
     Route::resource('category', CategoryController::class);
     Route::resource('post',PostController::class);
+    Route::post('/post/upload', [PostController::class,'upload'])->name('post.upload');
+
 
     // Route::get('/', [DashboardController::class, 'render'])->name('index');
     Route::resource('/roles', RoleController::class);

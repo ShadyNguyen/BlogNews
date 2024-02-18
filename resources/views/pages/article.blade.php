@@ -26,7 +26,7 @@
                         <div class="sn-content">
                             <h1 class="sn-title">{{ $post->title }}</h1>
                             <p>
-                                {{ $post->content }}
+                                {!! $post->content !!}
                             </p>
                         </div>
 

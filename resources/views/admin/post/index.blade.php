@@ -58,7 +58,7 @@
                                         <th>Title</th>
                                         <th>Image</th>
                                         <th>Category</th>
-                                        <th>Content</th>
+                                        <th>Describe</th>
                                         <th>Author</th>
                                         <th class="w-1">Manage</th>
                                     </tr>
@@ -72,7 +72,7 @@
                                                 <img width="100" src="{{ asset('uploads/article/' . $cate->image) }}">
                                             </td>
                                             <td>{{$cate->category->name}}</td>
-                                            <td>{{$cate->content}}</td>
+                                            <td>{{$cate->describe}}</td>
                                             <td>{{$cate->author}}</td>
                                             <td>
                                                 {!! Form::open([

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
 class PostController extends Controller
@@ -14,6 +15,23 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function upload(Request $request)
+     {
+         // Kiểm tra xem có tệp được gửi lên không
+         if ($request->hasFile('upload')) {
+           $originName = $request->file('upload')->getClientOriginalName();
+           $fileName = pathinfo($originName, PATHINFO_FILENAME);
+           $extension = $request->file('upload')->getClientOriginalExtension();
+           $fileName = $fileName . '_' .time() . '.' . $extension;
+
+           $request->file('upload')->move(public_path('uploads/image/'), $fileName);
+
+           $url = asset('uploads/image/' . $fileName );
+           return response()->json(['fileName'=> $fileName, 'uploaded' => 1 , 'url' => $url]);
+         }
+ 
+     }
     public function index()
     {
         $list = Post::orderBy('id', 'DESC')->get();
@@ -49,6 +67,7 @@ class PostController extends Controller
                 'slug' => 'required|unique:posts',
                 'category_id' => 'required',
                 'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+                'describe' => 'required'
             ],
             [
                 'title.unique' => 'Tên danh mục đã có ,xin điền tên khác',
@@ -58,6 +77,7 @@ class PostController extends Controller
                 'category_id.required' => 'Vui lòng điền tên danh mục!',
                 'slug.required' => 'Vui lòng điền đường dẫn',
                 'slug.unique' => 'Đường dãn này đã có hãy điền đường dẫn khác!',
+                'describe.required' => 'Vui lòng điền mô tả bài viết'
             ]
         );
 
@@ -67,6 +87,7 @@ class PostController extends Controller
         $post->content = $data['content'];
         $post->author = $data['author'];
         $post->slug = $data['slug'];
+        $post->describe = $data['describe'];
 
         // $post->create_at = Carbon::now('Asia/Ho_Chi_Minh');
         // $post->update_at = Carbon::now('Asia/Ho_Chi_Minh');
@@ -125,6 +146,7 @@ class PostController extends Controller
                 'author' => 'required',
                 'category_id' => 'required',
                 'slug' => 'required',
+                'describe' => 'required',
             ],
             [
                 'title.required' => 'Vui lòng điền tên bài viết!',
@@ -132,6 +154,7 @@ class PostController extends Controller
                 'author.required' => 'Vui lòng điền tên tác giả!',
                 'category_id.required' => 'Vui lòng điền tên danh mục!',
                 'slug.required' => 'Vui lòng điền đường dẫn',
+                'describe.required' => 'Vui lòng điền mô tả bài viết'
 
             ]
         );
@@ -141,6 +164,8 @@ class PostController extends Controller
         $post->content = $data['content'];
         $post->author = $data['author'];
         $post->slug = $data['slug'];
+        $post->describe = $data['describe'];
+
         // $post->update_at = Carbon::now('Asia/Ho_Chi_Minh');
         $get_image = $request->file('image');
         if ($get_image) {

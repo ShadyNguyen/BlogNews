@@ -17,6 +17,8 @@
         "resolve-url-loader": "^3.1.0"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-easy-image": "^41.1.0",
+        "@ckeditor/ckeditor5-upload": "^41.1.0",
         "ckeditor": "^4.12.1"
     }
 }
