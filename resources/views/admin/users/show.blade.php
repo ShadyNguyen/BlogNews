@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Quản Lý</h2>
+                        <h2>Manage Assign</h2>
                     </div>
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -55,7 +55,7 @@
                                         @endif
                                     @endforeach
                                 </div>
-                                {!! Form::submit('Phân Quyền', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
+                                {!! Form::submit('Assign', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
                                 {!! Form::close() !!}
                             </div>
                         </div>

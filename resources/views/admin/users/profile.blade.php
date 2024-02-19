@@ -82,7 +82,7 @@
                            
                             {!! Form::open(['route' => ['update-profile', Auth::user()->id], 'method' => 'POST','enctype' => 'multipart/form-data']) !!}
                            
-                            <h1>Quản Lý Tài Khoản</h1>
+                            <h1>Profile</h1>
                              <p> Account Setting</p>   
                             <div class="form-group">
                                 <img src="{{asset('uploads/avt/'.Auth::user()->avatar)}}" alt="" class="avatar avatar-2xl">
@@ -97,7 +97,7 @@
                                 {!! Form::text('email',  Auth::user()->email , ['class' => 'form-control mt-auto', 'placeholder' => 'Nhập dữ liệu...', 'readonly']) !!}
                             </div>
                             
-                            {!! Form::submit('Cập Nhật', ['class' => 'btn btn-primary', 'style' => 'margin-top:10px; float:right']) !!}
+                            {!! Form::submit('Update', ['class' => 'btn btn-primary', 'style' => 'margin-top:10px; float:right']) !!}
                             
                             {!! Form::close() !!}
                             </div>

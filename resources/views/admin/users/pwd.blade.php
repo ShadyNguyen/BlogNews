@@ -64,13 +64,13 @@
                                     <button type="submit" class="btn btn-ghost-primary" name="update" >Submit</button>
                                 </div>
                             </form> --}}
-                            <h1>Thay Đổi Mật Khẩu</h1>
+                            <h1></h1>
                             <p>Change Password</p>
                             {!! Form::open(['route' => ['update-password', Auth::user()->id], 'method' => 'POST']) !!}
                             @csrf
                         
                             <div class="form-group">
-                                {!! Form::label('old_pwd', 'Mật khẩu cũ', ['style' => 'margin-top:10px']) !!}
+                                {!! Form::label('old_pwd', 'Old Password', ['style' => 'margin-top:10px']) !!}
                                 {!! Form::password('old_pwd', ['class' => 'form-control', 'placeholder' => 'Nhập mật khẩu cũ...']) !!}
                                 @if ($errors->has('old_pwd'))
                                     <span class="text-danger">{{ $errors->first('old_pwd') }}</span>
@@ -78,7 +78,7 @@
                             </div>
                         
                             <div class="form-group">
-                                {!! Form::label('new_pwd', 'Mật khẩu mới', ['style' => 'margin-top:10px']) !!}
+                                {!! Form::label('new_pwd', 'New Password', ['style' => 'margin-top:10px']) !!}
                                 {!! Form::password('new_pwd', ['class' => 'form-control', 'placeholder' => 'Nhập mật khẩu mới...']) !!}
                                 @if ($errors->has('new_pwd'))
                                     <span class="text-danger">{{ $errors->first('new_pwd') }}</span>
@@ -86,7 +86,7 @@
                             </div>
                         
                             <div class="form-group">
-                                {!! Form::label('new_pwd_confirmation', 'Nhập lại mật khẩu mới', ['style' => 'margin-top:10px']) !!}
+                                {!! Form::label('new_pwd_confirmation', 'Comfirm Password', ['style' => 'margin-top:10px']) !!}
                                 {!! Form::password('new_pwd_confirmation', [
                                     'class' => 'form-control',
                                     'placeholder' => 'Nhập lại mật khẩu mới...',
@@ -96,7 +96,7 @@
                                 @endif
                             </div>
                         
-                            {!! Form::submit('Đổi mật khẩu', ['class' => 'btn btn-primary', 'style' => 'margin-top:10px; float:right']) !!}
+                            {!! Form::submit('Change Password', ['class' => 'btn btn-primary', 'style' => 'margin-top:10px; float:right']) !!}
                         {!! Form::close() !!}
                         
                         </div>

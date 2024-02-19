@@ -71,7 +71,7 @@
                                                     <span class="badge badge-info">{{ $per->name }}</span>
                                                 @endforeach
                                             </td>
-                                            <td><a href="{{route('roles.show',$ro->id)}}" class="btn btn-dark">Chi Tiết</a></td>
+                                            <td><a href="{{route('roles.show',$ro->id)}}" class="btn btn-dark">Details</a></td>
                                             <td>
                                                 {!! Form::open([
                                                     'method' => 'DELETE',
@@ -79,11 +79,11 @@
                                                     'onsubmit' => 'return confirm("Bạn có chắc muốn xoá không?")',
                                                 ]) !!}
             
-                                                {!! Form::submit('Xoá', ['class' => 'btn btn-danger']) !!}
+                                                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
             
                                                 {!! Form::close() !!}
             
-                                                <a href="{{route ('roles.edit',$ro->id) }}" class="btn btn-info">Sửa</a>
+                                                <a href="{{route ('roles.edit',$ro->id) }}" class="btn btn-info">Edit</a>
                                             </td>
                                         </tr>
                                     @endforeach

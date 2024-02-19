@@ -82,7 +82,6 @@
                                             @role('admin')
                                             <td>
                                                 <a href="{{ route('users.show',$u->id) }}" class="btn btn-dark">Role</a>
-
                                             </td>
                                             @endrole
                                             {{-- <td>

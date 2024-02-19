@@ -81,11 +81,11 @@
                                                     'onsubmit' => 'return confirm("Bạn có chắc muốn xoá không?")',
                                                 ]) !!}
             
-                                                {!! Form::submit('Xoá', ['class' => 'btn btn-danger']) !!}
+                                                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
             
                                                 {!! Form::close() !!}
             
-                                                <a href="{{route ('post.edit',$cate->id) }}" class="btn btn-info">Sửa</a>
+                                                <a href="{{route ('post.edit',$cate->id) }}" class="btn btn-info">Edit</a>
                                             </td>
                                         </tr>
                                         

@@ -26,7 +26,7 @@
                                 <path d="M12 5l0 14" />
                                 <path d="M5 12l14 0" />
                             </svg>
-                            Thêm Permission
+                            Create Permission
                         </a>
                         <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                             data-bs-target="#modal-report" aria-label="Create new report">
@@ -79,12 +79,12 @@
                                                     'onsubmit' => 'return confirm("Bạn có chắc muốn xoá không?")',
                                                 ]) !!}
 
-                                                {!! Form::submit('Xoá', ['class' => 'btn btn-danger']) !!}
+                                                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 
                                                 {!! Form::close() !!}
 
                                                 <a href="{{ route('permissions.edit', $pe->id) }}"
-                                                    class="btn btn-info">Sửa</a>
+                                                    class="btn btn-info">Edit</a>
                                             </td>
                                         </tr>
                                     @endforeach

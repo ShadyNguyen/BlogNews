@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Quản lý Bài Viết</h2>
+                        <h2>Post Manage</h2>
                     </div>
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -85,9 +85,9 @@
                             ]) !!}
                         </div>
                         @if (!isset($post))
-                            {!! Form::submit('Thêm', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
+                            {!! Form::submit('Create', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
                         @else
-                            {!! Form::submit('Cập Nhật', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
+                            {!! Form::submit('Update', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
                         @endif
                         {!! Form::close() !!}
                     </div>

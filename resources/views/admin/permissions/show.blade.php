@@ -38,7 +38,7 @@
                             @endforeach
                         </div>
                         
-                        {!! Form::submit('Phân Quyền', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
+                        {!! Form::submit('Assign', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
 
                         {!! Form::close() !!}
 

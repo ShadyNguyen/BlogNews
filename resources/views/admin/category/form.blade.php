@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><h2>Quản lý Danh Mục</h2></div>
+                <div class="card-header"><h2>Category Manage</h2></div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -37,9 +37,9 @@
                         {!! Form::text('slug', isset($category) ? $category->slug : '', ['class' => 'form-control', 'placeholder' => 'Nhập dữ liệu...', 'id' => 'convert_slug']) !!}
                     </div>
                     @if(!isset($category))
-                    {!! Form::submit('Thêm', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
+                    {!! Form::submit('Create', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
                     @else
-                    {!! Form::submit('Cập Nhật', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
+                    {!! Form::submit('Update', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
                     @endif
                     {!! Form::close() !!}
                    
