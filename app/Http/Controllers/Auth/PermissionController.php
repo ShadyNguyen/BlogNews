@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-
+use App\Models\User;
 class PermissionController extends Controller
 {
+    public function show($id){
+        $roles = Role::all();
+        $permission = Permission::find($id);
+        // $user = User::all();
+        $all_roles = Role::all();
+        return view('admin.permissions.show',compact('permission', 'roles','all_roles'));
+    }
     public function index()
     {
         $list = Permission::all();
@@ -76,20 +83,15 @@ class PermissionController extends Controller
         $permission->delete();
         toastr()->success('Thành công', 'Xoá permission thành công.');
         return redirect()->route('permissions.index');
-
     }
 
-    public function assignRole(Request $request, Permission $permission)
+    public function assignRole(Request $request, $id)
     {
-        $permission->roles()->detach();
-        if ($request->has('roles')) {
-            foreach ($request->input('roles', []) as $roleId) {
-                $role = Role::findById($roleId);
-                if ($role) {
-                    $permission->assignRole($role);
-                }
-            }
-        }
-        return back()->with('message', 'Cập nhật roles cho permission thành công');
+        $data = $request->all();
+        $role = Role::all();
+        $permission = Permission::find($id);
+        $role->givePermissionTo($data['role']);
+        toastr()->success('Phân Quyền', 'Phân perrmissions vào roles thành công.');
+        return redirect()->route('users.index');
     }
 }

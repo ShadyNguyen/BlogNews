@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Models\User;
 
 class RoleController extends Controller
 {
+    public function show( $id){
+        $roles = Role::find($id);
+        $permission = Permission::all();
+        $all_permission = $roles->permissions;
+        return view('admin.roles.show',compact('roles', 'permission','all_permission'));
+    }
     public function index()
     {
         $list = Role::all();
@@ -81,6 +88,6 @@ class RoleController extends Controller
         $permissions = Permission::whereIn('id', $request->input('permissions', []))->pluck('name');
         $role->givePermissionTo($permissions);
         toastr()->success('Thành công', 'Phần Quyền thành công.');
-        return redirect()->back();
+        return redirect()->route('roles.index');
     }
 }

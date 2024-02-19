@@ -37,7 +37,7 @@ Route::get('/register',[RegisterController::class,'showRegisterForm'])->name('sh
 Route::post('/register',[RegisterController::class,'create'])->name('register');
 Route::get('logout',[LoginController::class,'logout'])->name('logout');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'role:admin|editor|blogger']], function () {
     Route::post('update-profile/{id}',[UserController::class,'updateProfile'])->name('update-profile');
     Route::post('update-password/{id}',[UserController::class,'updatePassword'])->name('update-password');
 
@@ -49,14 +49,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('post',PostController::class);
     Route::post('/post/upload', [PostController::class,'upload'])->name('post.upload');
 
-
     // Route::get('/', [DashboardController::class, 'render'])->name('index');
     Route::resource('/roles', RoleController::class);
     Route::post('/roles/{role}/permissions',[RoleController::class, 'givePermission'])->name('roles.permissions');
     Route::resource('/permissions', PermissionController::class);
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::post('/users/{id}/roles', [UserController::class, 'assignRole'])->name('users.roles');
+    Route::post('/users/{user}/roles', [UserController::class, 'assignRole'])->name('users.roles');
     Route::post('/users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
     Route::post('/permissions/{permission}/roles',[PermissionController::class, 'assignRole'])->name('permissions.roles');
 

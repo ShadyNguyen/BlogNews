@@ -24,27 +24,42 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        {!! Form::open(['route' => ['users.roles', $user->id], 'method' => 'POST']) !!}
-
-                        <div class="form-group">
-                            {!! Form::label('role', 'Role', ['class' => 'form-label']) !!}
-                            
-                            @foreach ($roles as $key => $rule)
-                            @if (@isset($user))
-                                {!! Form::checkbox('role[]', $rule->id, isset($all_roles) && $all_roles->contains($rule->id) ? true : false, ['class' => 'form-check-input']) !!}
-                            @else
-                                {!! Form::checkbox('role[]', $rule->id, '', ['class' => 'form-check-input']) !!}
-                            @endif
-                            {!! Form::label('Role', $rule->name, ['class' => 'form-check-label']) !!}
-                            
-                        
-                        @endforeach
+                        <div class="container">
+                            <div class="row">
+                                {!! Form::open(['route' => ['users.roles', $user->id], 'method' => 'POST']) !!}
+                                <div class="form-check">
+                                    <h3 class="">Role</h3>
+                                    @foreach ($roles as $key => $rule)
+                                        @if (@isset($user))
+                                            {!! Form::checkbox('role[]', $rule->id, isset($all_roles) && $all_roles->contains($rule->id) ? true : false, [
+                                                'class' => 'form-check-input-inline',
+                                            ]) !!}
+                                            {!! Form::label('Role', $rule->name, ['class' => 'form-check-label-inline']) !!}
+                                        @else
+                                            {!! Form::checkbox('role[]', $rule->id, '', ['class' => 'form-check-input-inline']) !!}
+                                            {!! Form::label('Role', $rule->name, ['class' => 'form-check-label-inline']) !!}
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="form-check">
+                                    <h3 class="">Permission</h3>
+                                    @foreach ($permissions as $key => $per)
+                                        @if (@isset($user))
+                                            {!! Form::checkbox('permission[]', $per->id, isset($all_permission) && $all_permission->contains($per->id) ? true : false, [
+                                                'class' => 'form-check-input-inline',
+                                            ]) !!}
+                                            {!! Form::label('Permission', $per->name, ['class' => 'form-check-label-inline']) !!}
+                                        @else
+                                            {!! Form::checkbox('permission[]', $per->id, '', ['class' => 'form-check-input-inline']) !!}
+                                            {!! Form::label('Permission', $per->name, ['class' => 'form-check-label-inline']) !!}
+                                        @endif
+                                    @endforeach
+                                </div>
+                                {!! Form::submit('Phân Quyền', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
+                                {!! Form::close() !!}
+                            </div>
                         </div>
-                        
-                        {!! Form::submit('Phân Quyền', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
 
-                        {!! Form::close() !!}
 
                     </div>
                 </div>

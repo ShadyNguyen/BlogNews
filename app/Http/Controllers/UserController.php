@@ -23,7 +23,8 @@ class UserController extends Controller
         $permissions = Permission::all();
         $user = User::find($id);
         $all_roles = $user->roles;
-        return view('admin.users.show', compact('user', 'roles', 'permissions','all_roles'));
+        $all_permissions = $user->permissions;
+        return view('admin.users.show', compact('user', 'roles', 'permissions','all_roles','all_permissions'));
     }
 
     public function givePermission(Request $request, User $user)
@@ -31,19 +32,20 @@ class UserController extends Controller
         $user->permissions()->detach();
         $permissions = Permission::whereIn('id', $request->input('permissions', []))->pluck('name');
         $user->givePermissionTo($permissions);
-        return back()->with('message', 'Cập nhật permission cho user thành công');
+        toastr()->success('Phân Quyền', 'Phân Permission vào Roles thành công!');
+        return redirect()->back();
     }
 
     public function assignRole(Request $request, $id)
     {
-        
         $data = $request->all();
         $user = User::find($id);
         $user->syncRoles($data['role']);
+        $user->syncPermissions($data['permission']);
         // $user->assignRoles($data['user']);
         // $user->removeRoles($data['role']);
         toastr()->success('Thành công', 'Phân vai trò thành công.');
-        return redirect()->back();
+        return redirect()->route('users.index');
     }
 
     // public function assignRole(Request $request, User $user)

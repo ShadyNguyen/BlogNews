@@ -57,8 +57,11 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Role</th>
+                                        <th>Permission</th>
                                         {{-- <th class="w-1">Manage</th> --}}
+                                        @role('admin')
                                         <th class="w-1">Manage</th>
+                                        @endrole
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,14 +71,20 @@
                                             <td>{{ $u->name }}</td>
                                             <td>
                                                 @foreach ($u->roles as $key => $role)
-                                                    <span class="badge badge-info">{{ $role->name }}</span>
+                                                    <span class="badge badge-dark">{{ $role->name }}</span>
                                                 @endforeach
                                             </td>
-                                            
+                                            <td>
+                                                @foreach ($u->permissions as $key => $per)
+                                                    <span class="badge badge-dark">{{ $per->name }}</span>
+                                                @endforeach
+                                            </td>
+                                            @role('admin')
                                             <td>
                                                 <a href="{{ route('users.show',$u->id) }}" class="btn btn-dark">Role</a>
 
                                             </td>
+                                            @endrole
                                             {{-- <td>
                                                 {!! Form::open([
                                                     'method' => 'DELETE',

@@ -56,8 +56,8 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                       
-
+                                        <th>Permission</th>
+                                        <td class="w-1">Assign</td>
                                         <th class="w-1">Manage</th>
                                     </tr>
                                 </thead>
@@ -66,7 +66,12 @@
                                         <tr>
                                             <th scope="row">{{ $key }}</th>
                                             <td>{{ $ro->name }}</td>
-                                           
+                                            <td>
+                                                @foreach ($ro->permissions as $key => $per)
+                                                    <span class="badge badge-info">{{ $per->name }}</span>
+                                                @endforeach
+                                            </td>
+                                            <td><a href="{{route('roles.show',$ro->id)}}" class="btn btn-dark">Chi Tiết</a></td>
                                             <td>
                                                 {!! Form::open([
                                                     'method' => 'DELETE',

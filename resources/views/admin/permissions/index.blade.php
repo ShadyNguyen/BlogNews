@@ -56,8 +56,8 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        
-
+                                        <td>Roles</td>
+                                        <th class="w-1">Assign</th>
                                         <th class="w-1">Manage</th>
                                     </tr>
                                 </thead>
@@ -66,19 +66,25 @@
                                         <tr>
                                             <th scope="row">{{ $key }}</th>
                                             <td>{{ $pe->name }}</td>
-                                           
+                                            <td>
+                                                @foreach ($pe->permissions as $key => $role)
+                                                    <span class="badge badge-info">{{ $role->name }}</span>
+                                                @endforeach
+                                            </td>
+                                            <td><a href="{{ route('permissions.show', $pe->id) }}" class="btn btn-dark">Assign</a></td>
                                             <td>
                                                 {!! Form::open([
                                                     'method' => 'DELETE',
                                                     'route' => ['permissions.destroy', $pe->id],
                                                     'onsubmit' => 'return confirm("Bạn có chắc muốn xoá không?")',
                                                 ]) !!}
-            
+
                                                 {!! Form::submit('Xoá', ['class' => 'btn btn-danger']) !!}
-            
+
                                                 {!! Form::close() !!}
-            
-                                                <a href="{{route ('permissions.edit',$pe->id) }}" class="btn btn-info">Sửa</a>
+
+                                                <a href="{{ route('permissions.edit', $pe->id) }}"
+                                                    class="btn btn-info">Sửa</a>
                                             </td>
                                         </tr>
                                     @endforeach
