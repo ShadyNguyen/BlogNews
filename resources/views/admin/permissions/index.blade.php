@@ -57,7 +57,7 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <td>Roles</td>
-                                        <th class="w-1">Assign</th>
+                                        {{-- <th class="w-1">Assign</th> --}}
                                         <th class="w-1">Manage</th>
                                     </tr>
                                 </thead>
@@ -71,7 +71,7 @@
                                                     <span class="badge badge-info">{{ $role->name }}</span>
                                                 @endforeach
                                             </td>
-                                            <td><a href="{{ route('permissions.show', $pe->id) }}" class="btn btn-dark">Assign</a></td>
+                                            {{-- <td><a href="{{ route('permissions.show', $pe->id) }}" class="btn btn-dark">Assign</a></td> --}}
                                             <td>
                                                 {!! Form::open([
                                                     'method' => 'DELETE',
