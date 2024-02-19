@@ -57,7 +57,7 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Role</th>
-
+                                        {{-- <th class="w-1">Manage</th> --}}
                                         <th class="w-1">Manage</th>
                                     </tr>
                                 </thead>
@@ -71,7 +71,11 @@
                                                     <span class="badge badge-info">{{ $role->name }}</span>
                                                 @endforeach
                                             </td>
-                                            <td><a href="">Sửa</a></td>
+                                            
+                                            <td>
+                                                <a href="{{ route('users.show',$u->id) }}" class="btn btn-dark">Role</a>
+
+                                            </td>
                                             {{-- <td>
                                                 {!! Form::open([
                                                     'method' => 'DELETE',

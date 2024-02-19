@@ -16,22 +16,22 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function upload(Request $request)
-     {
-         // Kiểm tra xem có tệp được gửi lên không
-         if ($request->hasFile('upload')) {
-           $originName = $request->file('upload')->getClientOriginalName();
-           $fileName = pathinfo($originName, PATHINFO_FILENAME);
-           $extension = $request->file('upload')->getClientOriginalExtension();
-           $fileName = $fileName . '_' .time() . '.' . $extension;
+    //  public function upload(Request $request)
+    //  {
+    //      // Kiểm tra xem có tệp được gửi lên không
+    //      if ($request->hasFile('upload')) {
+    //        $originName = $request->file('upload')->getClientOriginalName();
+    //        $fileName = pathinfo($originName, PATHINFO_FILENAME);
+    //        $extension = $request->file('upload')->getClientOriginalExtension();
+    //        $fileName = $fileName . '_' .time() . '.' . $extension;
 
-           $request->file('upload')->move(public_path('uploads/image/'), $fileName);
+    //        $request->file('upload')->move(public_path('uploads/image/'), $fileName);
 
-           $url = asset('uploads/image/' . $fileName );
-           return response()->json(['fileName'=> $fileName, 'uploaded' => 1 , 'url' => $url]);
-         }
+    //        $url = asset('uploads/image/' . $fileName );
+    //        return response()->json(['fileName'=> $fileName, 'uploaded' => 1 , 'url' => $url]);
+    //      }
  
-     }
+    //  }
     public function index()
     {
         $list = Post::orderBy('id', 'DESC')->get();

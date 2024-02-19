@@ -21,8 +21,9 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $permissions = Permission::all();
-        $list = User::all();
-        return view('admin.users.show', compact('list', 'roles', 'permissions'));
+        $user = User::find($id);
+        $all_roles = $user->roles;
+        return view('admin.users.show', compact('user', 'roles', 'permissions','all_roles'));
     }
 
     public function givePermission(Request $request, User $user)
@@ -33,19 +34,32 @@ class UserController extends Controller
         return back()->with('message', 'Cập nhật permission cho user thành công');
     }
 
-    public function assignRole(Request $request, User $user)
+    public function assignRole(Request $request, $id)
     {
-        $user->roles()->detach();
-        if ($request->has('roles')) {
-            foreach ($request->input('roles', []) as $roleId) {
-                $role = Role::findById($roleId);
-                if ($role) {
-                    $user->assignRole($role);
-                }
-            }
-        }
-        return back()->with('message', 'Cập nhật roles cho user thành công');
+        
+        $data = $request->all();
+        $user = User::find($id);
+        $user->syncRoles($data['role']);
+        // $user->assignRoles($data['user']);
+        // $user->removeRoles($data['role']);
+        toastr()->success('Thành công', 'Phân vai trò thành công.');
+        return redirect()->back();
     }
+
+    // public function assignRole(Request $request, User $user)
+    // {
+    //     $user->roles()->detach();
+    //     if ($request->has('roles')) {
+    //         foreach ($request->input('roles', []) as $roleId) {
+    //             $role = Role::findById($roleId);
+    //             if ($role) {
+    //                 $user->assignRole($role);
+    //             }
+    //         }
+    //     }
+    //     toastr()->success('Thành Công!','Phân Quyền thành công!');
+    //     return redirect()->back();
+    // }
 
     public function profileUser()
     {
