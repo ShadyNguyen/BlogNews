@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+use Predis\Client;
 
 class CategoryController extends Controller
 {
@@ -12,11 +15,26 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $list = Category::orderBy('id', 'DESC')->get();
+
+    
+    public function index() {
+        // Kiểm tra xem dữ liệu đã được lưu trong cache chưa
+        $cache = Redis::get('categories');
+    
+        if ($cache) {
+            // Nếu có dữ liệu trong cache, trả về dữ liệu từ cache
+            $list = json_decode($cache);
+        } else {
+            // Nếu không có dữ liệu trong cache, thực hiện truy vấn cơ sở dữ liệu
+            $list = Category::orderBy('id', 'DESC')->get();
+    
+            // Lưu danh sách categories vào cache để sử dụng cho các lần truy cập sau
+            Redis::set('categories', json_encode($list));
+        }
+    
         return view('admin.category.index', compact('list'));
     }
+    
 
     /**
      * Show the form for creating a new resource.

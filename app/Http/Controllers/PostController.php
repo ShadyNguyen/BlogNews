@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
@@ -30,13 +31,25 @@ class PostController extends Controller
     //        $url = asset('uploads/image/' . $fileName );
     //        return response()->json(['fileName'=> $fileName, 'uploaded' => 1 , 'url' => $url]);
     //      }
- 
+
     //  }
     public function index()
     {
-        $list = Post::orderBy('id', 'DESC')->get();
-        $category = Category::pluck('name', 'id');
-        return view('admin.post.index', compact('list', 'category'));
+        // Kiểm tra xem dữ liệu đã được lưu trong cache chưa
+        $cache = Redis::get('posts');
+
+        if ($cache) {
+            // Nếu có dữ liệu trong cache, trả về dữ liệu từ cache
+            $list = json_decode($cache);
+        } else {
+            // Nếu không có dữ liệu trong cache, thực hiện truy vấn cơ sở dữ liệu
+            $list = Post::orderBy('id', 'DESC')->get();
+
+            // Lưu danh sách categories vào cache để sử dụng cho các lần truy cập sau
+            Redis::set('posts', json_encode($list));
+        }
+
+        return view('admin.post.index', compact('list'));
     }
 
     /**
