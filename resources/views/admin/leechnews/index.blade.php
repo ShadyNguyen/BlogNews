@@ -62,7 +62,6 @@
                                         <th>Author</th>
                                         <th>Date</th>
                                         <th>URL</th>
-
                                         {{-- <th class="w-1">Manage</th> --}}
                                     </tr>
                                 </thead>

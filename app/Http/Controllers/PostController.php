@@ -11,44 +11,29 @@ use Carbon\Carbon;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // public function index()
+    // {
+    //     // Kiểm tra xem dữ liệu đã được lưu trong cache chưa
+    //     $cache = Redis::get('posts');
 
-    //  public function upload(Request $request)
-    //  {
-    //      // Kiểm tra xem có tệp được gửi lên không
-    //      if ($request->hasFile('upload')) {
-    //        $originName = $request->file('upload')->getClientOriginalName();
-    //        $fileName = pathinfo($originName, PATHINFO_FILENAME);
-    //        $extension = $request->file('upload')->getClientOriginalExtension();
-    //        $fileName = $fileName . '_' .time() . '.' . $extension;
+    //     if ($cache) {
+    //         // Nếu có dữ liệu trong cache, trả về dữ liệu từ cache
+    //         $list = json_decode($cache);
+    //     } else {
+    //         // Nếu không có dữ liệu trong cache, thực hiện truy vấn cơ sở dữ liệu
+    //         $list = Post::orderBy('id', 'DESC')->get();
+    //         // $category = Category::pluck('title', 'id');
 
-    //        $request->file('upload')->move(public_path('uploads/image/'), $fileName);
+    //         // Lưu danh sách categories vào cache để sử dụng cho các lần truy cập sau
+    //         Redis::set('posts', json_encode($list));
+    //     }
 
-    //        $url = asset('uploads/image/' . $fileName );
-    //        return response()->json(['fileName'=> $fileName, 'uploaded' => 1 , 'url' => $url]);
-    //      }
+    //     return view('admin.post.index', compact('list'));
+    // }
 
-    //  }
     public function index()
     {
-        // Kiểm tra xem dữ liệu đã được lưu trong cache chưa
-        $cache = Redis::get('posts');
-
-        if ($cache) {
-            // Nếu có dữ liệu trong cache, trả về dữ liệu từ cache
-            $list = json_decode($cache);
-        } else {
-            // Nếu không có dữ liệu trong cache, thực hiện truy vấn cơ sở dữ liệu
-            $list = Post::orderBy('id', 'DESC')->get();
-
-            // Lưu danh sách categories vào cache để sử dụng cho các lần truy cập sau
-            Redis::set('posts', json_encode($list));
-        }
-
+        $list = Post::orderBy('id', 'desc')->get();
         return view('admin.post.index', compact('list'));
     }
 
