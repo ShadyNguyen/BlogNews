@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\API\PostAPIController;
 use App\Http\Controllers\DashboardController;
 
 
@@ -58,6 +59,11 @@ Route::group(['middleware' => ['auth', 'role:admin|editor|blogger']], function (
     Route::post('/users/{user}/roles', [UserController::class, 'assignRole'])->name('users.roles');
     Route::post('/users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
     Route::post('/permissions/{permission}/roles',[PermissionController::class, 'assignRole'])->name('permissions.roles');
+
+    //get api
+    Route::get('leech-news',[PostAPIController::class,'index'])->name('leech-news');
+    Route::post('leech-store/{slug}',[PostAPIController::class,'store'])->name('leech-store');
+
 
 });
 

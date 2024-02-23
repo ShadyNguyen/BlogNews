@@ -79,6 +79,9 @@
                                 <a class="dropdown-item" href="{{ route('post.index') }}">
                                     List
                                 </a>
+                                <a class="dropdown-item" href="{{ route('leech-news') }}">
+                                    Leech
+                                </a>
                             </div>
                         </div>
                     </div>
