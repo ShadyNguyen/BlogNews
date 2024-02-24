@@ -26,7 +26,7 @@
                                 <path d="M12 5l0 14" />
                                 <path d="M5 12l14 0" />
                             </svg>
-                            Create Permission
+                            {{ __('lang.create') }}
                         </a>
                         <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                             data-bs-target="#modal-report" aria-label="Create new report">
@@ -55,10 +55,10 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
-                                        <td>Roles</td>
+                                        <th>{{ __('lang.name') }}</th>
+                                        <td>{{ __('lang.role') }}</td>
                                         {{-- <th class="w-1">Assign</th> --}}
-                                        <th class="w-1">Manage</th>
+                                        <th class="w-1">{{ __('lang.manage') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

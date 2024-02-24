@@ -16,7 +16,7 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Home
+                           {{ __('lang.home') }}
                         </span>
                     </a>
                 </li>
@@ -37,17 +37,17 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Category
+                            {{ __('lang.category') }}
                         </span>
                     </a>
                     <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item" href="{{ route('category.create') }}">
-                                    Create
+                                    {{ __('lang.create') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('category.index') }}">
-                                    List
+                                    {{ __('lang.list') }}
                                 </a>
                             </div>
                         </div>
@@ -67,17 +67,17 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Post
+                            {{ __('lang.post') }}
                         </span>
                     </a>
                     <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item" href="{{ route('post.create') }}">
-                                    Create
+                                    {{ __('lang.create') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('post.index') }}">
-                                    List
+                                    {{ __('lang.list') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('leech-news') }}">
                                     Leech
@@ -99,14 +99,14 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            User
+                            {{ __('lang.user') }}
                         </span>
                     </a>
                     <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item" href="{{ route('user.index') }}">
-                                    List
+                                    {{ __('lang.list') }}
                                 </a>
                             </div>
                         </div>
@@ -127,17 +127,17 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                Role
+                                {{ __('lang.role') }}
                             </span>
                         </a>
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
                                     <a class="dropdown-item" href="{{ route('roles.create') }}">
-                                        Create
+                                        {{ __('lang.create') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('roles.index') }}">
-                                        List
+                                        {{ __('lang.list') }}
                                     </a>
                                 </div>
                             </div>
@@ -157,17 +157,17 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                Permission
+                                {{ __('lang.permission') }}
                             </span>
                         </a>
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
                                     <a class="dropdown-item" href="{{ route('permissions.create') }}">
-                                        Create
+                                        {{ __('lang.create') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('permissions.index') }}">
-                                        List
+                                        {{ __('lang.list') }}
                                     </a>
                                 </div>
                             </div>

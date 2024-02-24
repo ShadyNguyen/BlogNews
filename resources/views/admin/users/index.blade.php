@@ -55,12 +55,12 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Role</th>
-                                        <th>Permission</th>
+                                        <th>{{ __('lang.name') }}</th>
+                                        <th>{{ __('lang.role') }}</th>
+                                        <th>{{ __('lang.permission') }}</th>
                                         {{-- <th class="w-1">Manage</th> --}}
                                         @role('admin')
-                                        <th class="w-1">Manage</th>
+                                        <th class="w-1">{{ __('lang.manage') }}</th>
                                         @endrole
                                     </tr>
                                 </thead>
@@ -81,7 +81,7 @@
                                             </td>
                                             @role('admin')
                                             <td>
-                                                <a href="{{ route('users.show',$u->id) }}" class="btn btn-dark">Role</a>
+                                                <a href="{{ route('users.show',$u->id) }}" class="btn btn-dark">{{ __('lang.role') }}</a>
                                             </td>
                                             @endrole
                                             {{-- <td>

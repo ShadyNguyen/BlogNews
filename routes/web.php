@@ -67,6 +67,13 @@ Route::group(['middleware' => ['auth', 'role:admin|editor|blogger']], function (
 
 });
 
-
+//Change Languges
+Route::get('lang/{locale}', function($locale) {
+    if(! in_array($locale,['en','vi'])){
+        abort(404);
+    }
+    session()->put('locale',$locale);
+    return redirect()->back();
+});
 
    

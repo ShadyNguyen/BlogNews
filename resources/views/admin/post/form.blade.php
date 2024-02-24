@@ -31,7 +31,7 @@
                         @endif
 
                         <div class="form-group">
-                            {!! Form::label('title', 'Title', []) !!}
+                            {!! Form::label('title', trans('lang.title'), []) !!}
                             {!! Form::text('title', isset($post) ? $post->title : '', [
                                 'class' => 'form-control mt-auto',
                                 'placeholder' => 'Nhập dữ liệu...',
@@ -40,7 +40,7 @@
                             ]) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('slug', 'Slug', []) !!}
+                            {!! Form::label('slug', trans('lang.slug'), []) !!}
                             {!! Form::text('slug', isset($post) ? $post->slug : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập dữ liệu...',
@@ -48,13 +48,13 @@
                             ]) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('Category', 'Category', []) !!}
+                            {!! Form::label('Category', trans('lang.category'), []) !!}
                             {!! Form::select('category_id', $category, isset($post) ? $post->category_id : '', [
                                 'class' => 'form-control mt-auto',
                             ]) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('describe', 'Describe', []) !!}
+                            {!! Form::label('describe', trans('lang.describe'), []) !!}
                             {!! Form::textarea('describe', isset($post) ? $post->describe : '', [
                                 'style' => 'resize:none',
                                 'class' => 'form-control  mt-2',
@@ -62,7 +62,7 @@
                             ]) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('content', 'Content', []) !!}
+                            {!! Form::label('content', trans('lang.content'), []) !!}
                             {!! Form::textarea('content', isset($post) ? $post->content : '', [
                                 'style' => 'resize:none',
                                 'class' => ' form-control ckeditor mt-2',
@@ -71,23 +71,23 @@
                             ]) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('Image', 'Image') !!}
+                            {!! Form::label('Image',trans('lang.image')) !!}
                             {!! Form::file('image', ['class' => 'form-control mt-2']) !!}
                             @if (!empty($post))
                                 <img width="50%" src="{{ asset('uploads/article/' . $post->image) }}">
                             @endif
                         </div>
                         <div class="form-group">
-                            {!! Form::label('author', 'Author', []) !!}
+                            {!! Form::label('author', trans('lang.author'), []) !!}
                             {!! Form::text('author', isset($post) ? $post->author : '', [
                                 'class' => 'form-control mt-auto',
                                 'placeholder' => 'Nhập dữ liệu...',
                             ]) !!}
                         </div>
                         @if (!isset($post))
-                            {!! Form::submit('Create', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
+                            {!! Form::submit(trans('lang.create'), ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
                         @else
-                            {!! Form::submit('Update', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
+                            {!! Form::submit(trans('lang.update'), ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
                         @endif
                         {!! Form::close() !!}
                     </div>

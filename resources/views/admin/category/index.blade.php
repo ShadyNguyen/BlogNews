@@ -26,7 +26,7 @@
                                 <path d="M12 5l0 14" />
                                 <path d="M5 12l14 0" />
                             </svg>
-                            Create Category
+                            {{ __('lang.create') }}
                         </a>
                         <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                             data-bs-target="#modal-report" aria-label="Create new report">
@@ -55,10 +55,10 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Slug</th>
+                                        <th>{{  __('lang.name') }}</th>
+                                        <th>{{  __('lang.slug') }}</th>
 
-                                        <th class="w-1">Manage</th>
+                                        <th class="w-1">{{  __('lang.manage') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,11 +74,11 @@
                                                     'onsubmit' => 'return confirm("Bạn có chắc muốn xoá không?")',
                                                 ]) !!}
             
-                                                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                                                {!! Form::submit(trans('lang.delete'), ['class' => 'btn btn-danger']) !!}
             
                                                 {!! Form::close() !!}
             
-                                                <a href="{{route ('category.edit',$cate->id) }}" class="btn btn-info">Edit</a>
+                                                <a href="{{route ('category.edit',$cate->id) }}" class="btn btn-info">{{ __('lang.edit') }}</a>
                                             </td>
                                         </tr>
                                     @endforeach

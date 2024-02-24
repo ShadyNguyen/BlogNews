@@ -29,14 +29,14 @@
                     @endif
                         
                     <div class="form-group">
-                        {!! Form::label('name', 'Name', []) !!}
+                        {!! Form::label('name', trans('lang.name'), []) !!}
                         {!! Form::text('name', isset($permission) ? $permission->name : '', ['class' => 'form-control', 'placeholder' => 'Nhập dữ liệu...' ,]) !!}
                     </div>
                     
                     @if(!isset($permission))
-                    {!! Form::submit('Create', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
+                    {!! Form::submit(trans('lang.create'), ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
                     @else
-                    {!! Form::submit('Update', ['class' => 'btn btn-success', 'style' => 'margin-top:10px']) !!}
+                    {!! Form::submit(trans('lang.update'), ['class' => 'btn btn-info', 'style' => 'margin-top:10px']) !!}
                     @endif
                     {!! Form::close() !!}
                 </div>

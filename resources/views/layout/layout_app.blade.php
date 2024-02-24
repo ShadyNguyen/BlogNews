@@ -53,6 +53,15 @@
                             alt="">
                     </a>
                 </h1>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-action dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="float:left">
+                      {{ __('lang.language') }}
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{{ url('lang/vi') }}">Vietnamese</a></li>
+                      <li><a class="dropdown-item" href="{{ url('lang/en') }}">English</a></li>
+                    </ul>
+                  </div>
                 <div class="navbar-nav flex-row order-md-last">
                     {{-- <div class="nav-item d-none d-md-flex me-3">
               <div class="btn-list">

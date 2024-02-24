@@ -26,7 +26,7 @@
                                 <path d="M12 5l0 14" />
                                 <path d="M5 12l14 0" />
                             </svg>
-                            Create Post
+                            {{ __('lang.create') }}
                         </a>
                         <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                             data-bs-target="#modal-report" aria-label="Create new report">
@@ -55,12 +55,12 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Title</th>
-                                        <th>Image</th>
-                                        <th>Category</th>
-                                        <th>Describe</th>
-                                        <th>Author</th>
-                                        <th class="w-1">Manage</th>
+                                        <th>{{ __('lang.title') }}</th>
+                                        <th>{{ __('lang.image') }}</th>
+                                        <th>{{ __('lang.category') }}</th>
+                                        <th>{{ __('lang.describe') }}</th>
+                                        <th>{{ __('lang.author') }}</th>
+                                        <th class="w-1">{{ __('lang.manage') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,11 +81,11 @@
                                                     'onsubmit' => 'return confirm("Bạn có chắc muốn xoá không?")',
                                                 ]) !!}
             
-                                                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                                                {!! Form::submit(trans('lang.delete'), ['class' => 'btn btn-danger']) !!}
             
                                                 {!! Form::close() !!}
             
-                                                <a href="{{route ('post.edit',$cate->id) }}" class="btn btn-info">Edit</a>
+                                                <a href="{{route ('post.edit',$cate->id) }}" class="btn btn-info">{{ __('lang.edit') }}</a>
                                             </td>
                                         </tr>
                                         
