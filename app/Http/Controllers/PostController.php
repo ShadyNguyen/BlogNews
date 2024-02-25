@@ -33,7 +33,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $list = Post::orderBy('id', 'desc')->get();
+        $list = Post::orderBy('id', 'desc')->paginate(10);
         return view('admin.post.index', compact('list'));
     }
 

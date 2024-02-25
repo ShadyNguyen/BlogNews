@@ -50,7 +50,7 @@
             <div class="row row-cards">
                 <div class="col-12">
                     <div class="card">
-                        <div class="table-responsive">
+                        <div class="table-responsive" >
                             <table class="table table-vcenter card-table table-striped">
                                 <thead>
                                     <tr>
@@ -71,35 +71,48 @@
                                             <td>
                                                 <img width="100" src="{{ asset('uploads/article/' . $cate->image) }}">
                                             </td>
-                                            <td>{{$cate->category->name}}</td>
-                                            <td>{{$cate->describe}}</td>
-                                            <td>{{$cate->author}}</td>
+                                            <td>{{ $cate->category->name }}</td>
+                                            <td>{{ $cate->describe }}</td>
+                                            <td>{{ $cate->author }}</td>
                                             <td>
                                                 {!! Form::open([
                                                     'method' => 'DELETE',
                                                     'route' => ['post.destroy', $cate->id],
                                                     'onsubmit' => 'return confirm("Bạn có chắc muốn xoá không?")',
                                                 ]) !!}
-            
+
                                                 {!! Form::submit(trans('lang.delete'), ['class' => 'btn btn-danger']) !!}
-            
+
                                                 {!! Form::close() !!}
-            
-                                                <a href="{{route ('post.edit',$cate->id) }}" class="btn btn-info">{{ __('lang.edit') }}</a>
+
+                                                <a href="{{ route('post.edit', $cate->id) }}"
+                                                    class="btn btn-info">{{ __('lang.edit') }}</a>
                                             </td>
                                         </tr>
-                                        
                                     @endforeach
                                 </tbody>
                                 </tableclass="table>
-                                {{-- <ul class='page-numbers'>
-                                    {{ $cate->links()}}
-                                </ul> --}}
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+    {{ $list->links() }}                       
+                               
+
+    <script>
+        $(document).on('click', '.pagination a', function(e) {
+            e.preventDefault();
+            var page = $(this).attr('href').split('page=')[1];
+            $.ajax({
+                url: '/posts?page=' + page,
+                type: 'get',
+                success: function(data) {
+                    $('#posts').html(data); // Thay đổi nội dung của #posts bằng dữ liệu trả về
+                    location.hash = page;
+                }
+            });
+        });
+    </script>
 @endsection
